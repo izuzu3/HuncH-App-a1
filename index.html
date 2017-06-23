@@ -1,0 +1,177 @@
+<!DOCTYPE html> 
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard</title>
+
+<!--
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+-->
+
+
+<link rel="stylesheet" href="jq/jquery.mobile-1.0.min.css">
+<script src="jq/jquery-1.6.4.min.js"></script>
+<script src="jq/jquery.mobile-1.0.min.js"></script>
+
+<link rel="stylesheet" href="css/style.css">
+<script src="js/index.js"></script>
+<script src="js/socket.js"></script>
+</head> 
+
+
+<body> 
+
+<div class="mobile mobile-four" data-role="page" id="Living-Room">
+
+        <div data-role="header">
+            <div class="menu-toggle">
+                <p class="menu-text">Living Room</p>
+				<img src="icons/Button-Down.png" alt="" width="16" height="16" border="0" />		
+            </div>
+
+        </div>
+		      
+        <div class="mobile-nav">
+            <ul>
+                <li><a href="#Kitchen">Kitchen</a></li>
+                <li><a href="#Bed-Room">Bed Room</a></li>
+                <li><a href="#Bath-Room">Bath Room</a></li>
+          </ul>
+        </div>	
+		
+		<div data-role="content">
+			<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a data-role="button" href="#" data-shadow="false" data-theme="none" id="pendt" name="l1" onclick='l1();'></a>
+						<a data-role="button" href="#" data-shadow="false" data-theme="none" id="vlight" name="l2" onclick='l2();'></a>
+					</div>
+					<div class="ui-block-b">
+						<a data-role="button" href="#" data-shadow="false" data-theme="none" id="fan" onclick='broadcast();'></a>
+						<a data-role="button" href="#" data-shadow="false" data-theme="none" id="tmpctrl" onclick='broadcast();'></a>
+					</div>
+			</div>
+        </div>
+		
+        <div class="Hunch-footer" data-role="footer" position="inline">
+            <a data-role="button" href="#" data-shadow="false" data-theme="none" id="setting_icon" value="Setting"></a>
+			<div style="text-align: center"<a data-role="button" href="#" data-shadow="false" data-theme="none" id="home_icon" ></a></div>
+        </div>
+
+</div>
+
+<div class="mobile mobile-four" data-role="page" id="Kitchen">
+        <div data-role="header">
+            <div class="menu-toggle">
+                <p class="menu-text">Kitchen</p>   
+				<img src="icons/Button-Down.png" alt="" width="16" height="16" border="0" />		
+            </div>
+        </div>
+		      
+        <div class="mobile-nav">
+            <ul>
+                <li><a href="#Kitchen">Living Room</a></li>
+                <li><a href="#Bed-Room">Bed Room</a></li>
+                <li><a href="#Bath-Room">Bath Room</a></li>
+          </ul>
+        </div>	
+		
+		<div data-role="content">
+			<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a data-role="button" href="#" data-shadow="false" data-theme="none" id="pendt"></a>
+						<a data-role="button" href="#" data-shadow="false" data-theme="none" id="vlight"></a>
+					</div>
+					<div class="ui-block-b">
+						<a data-role="button" href="#" data-shadow="false" data-theme="none" id="fan"></a>
+						<a data-role="button" href="#" data-shadow="false" data-theme="none" id="vents"></a>
+					</div>
+			</div>
+        </div>
+  
+        <div class="Hunch-footer" data-role="footer" position="inline">
+            <a data-role="button" href="#" data-shadow="false" data-theme="none" id="setting_icon" value="Setting"></a>
+			<div style="text-align: center"<a data-role="button" href="#" data-shadow="false" data-theme="none" id="home_icon" ></a></div>
+        </div>
+
+</div>
+
+<div class="mobile mobile-four" data-role="page" id="Bed-Room">
+        <div data-role="header">
+            <div class="menu-toggle">
+                <p class="menu-text">Bed Room</p>        
+				<img src="icons/Button-Down.png" alt="" width="16" height="16" border="0" />		
+            </div>
+
+        </div>
+        
+        <div class="mobile-nav">
+            <ul>
+                <li><a href="#Kitchen">Kitchen</a></li>
+                <li><a href="#Living-Room">Living Room</a></li>
+                <li><a href="#Bath-Room">Bath Room</a></li>
+            </ul>
+        </div>
+
+		<div data-role="content">
+			<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a data-role="button" href="#" data-shadow="false" data-theme="none" id="pendt"></a>
+						<a data-role="button" href="#" data-shadow="false" data-theme="none" id="vlight"></a>
+					</div>
+					<div class="ui-block-b">
+						<a data-role="button" href="#" data-shadow="false" data-theme="none" id="fan"></a>
+						<a data-role="button" href="#" data-shadow="false" data-theme="none" id="vents"></a>
+					</div>
+			</div>
+        </div>
+
+        
+        <div class="Hunch-footer" data-role="footer" position="inline">
+            <a data-role="button" href="#" data-shadow="false" data-theme="none" id="setting_icon" value="Setting"></a>
+			<div style="text-align: center"<a data-role="button" href="#" data-shadow="false" data-theme="none" id="home_icon" ></a></div>
+        </div>
+
+</div>
+
+<div class="mobile mobile-four" data-role="page" id="Bath-Room">
+        <div data-role="header">
+            <div class="menu-toggle">
+                <p class="menu-text">Bath Room</p>        
+				<img src="icons/Button-Down.png" alt="" width="16" height="16" border="0" />		
+            </div>
+
+        </div>
+        
+        <div class="mobile-nav">
+            <ul>
+                <li><a href="#Kitchen">Kitchen</a></li>
+                <li><a href="#Bed-Room">Bed Room</a></li>
+                <li><a href="#Living-Room">Living Room</a></li>
+            </ul>
+        </div>
+		
+		<div data-role="content">
+			<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a data-role="button" href="#" data-shadow="false" data-theme="none" id="pendt"></a>
+						<a data-role="button" href="#" data-shadow="false" data-theme="none" id="vlight"></a>
+					</div>
+					<div class="ui-block-b">
+						<a data-role="button" href="#" data-shadow="false" data-theme="none" id="fan"></a>
+						<a data-role="button" href="#" data-shadow="false" data-theme="none" id="vents"></a>
+					</div>
+			</div>
+        </div>
+
+        
+        <div class="Hunch-footer" data-role="footer" position="inline">
+            <a data-role="button" href="#" data-shadow="false" data-theme="none" id="setting_icon" value="Setting"></a>
+			<div style="text-align: center"<a data-role="button" href="#" data-shadow="false" data-theme="none" id="home_icon" ></a></div>
+        </div>
+
+</div>
+</body>	
+</html>
