@@ -1,0 +1,157 @@
+.mobile-wrapper{
+	width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* ALL MOBILES */
+
+body{
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	background-color: #eee;
+}
+
+.ui-page.ui-body-c {
+    background: url("../icons/MsgBox.png");
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;  
+}
+
+a{
+	text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6{
+	color: #fff;
+	font-weight: 200;
+	margin: 0;
+	padding: 10px 0;
+}
+
+.menu-toggle{
+	text-align: center;
+	cursor:  pointer;
+}
+
+
+.mobile-nav ul{
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+/* MOBILE FOUR */
+
+.mobile-four{
+	background: #1d1c29;
+    background: -webkit-linear-gradient(#1d1c29, #2f254b); 
+    background: -o-linear-gradient(#1d1c29, #2f254b); 
+    background: -moz-linear-gradient(#1d1c29, #2f254b); 
+    background: linear-gradient(#1d1c29, #2f254b);
+}
+
+
+.mobile-four .mobile-nav{
+	background-color: #3C3842;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	transform: translate(0, -999%);
+	-webkit-transition: all 0.6s ease-in-out;
+	-o-transition: all 0.6s ease-in-out;
+	transition: all 0.6s ease-in-out;
+}
+
+#pendt{
+	background-image: url("../icons/Button-Pendant.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 170px;
+	height: 120px;
+	border:none;
+}
+
+#vlight{
+	background-image: url("../icons/Button-VanityLight.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 170px;
+	height: 120px;
+	border:none;
+}
+
+#fan{
+	background-image: url("../icons/Button-Fan.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 170px;
+	height: 120px;
+	border:none;
+}
+
+#tmpctrl{
+	background-image: url("../icons/Button-AC.png" );
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 170px;
+	height: 120px;
+	border:none;
+}
+
+#setting_icon{
+	background-image: url("../icons/Button-Settings - Copy.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 75px;
+	height: 52px;
+	border:none;
+}
+
+#home_icon{
+	background-image: url("../icons/Button-Home.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 75px;
+	height: 52px;
+	border:none;
+}
+
+
+#vents{
+	background-image: url("../icons/Button-Exhaust.png" );
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 172px;
+	height: 120px;
+	border:none;
+}
+
+
+
+.mobile-four .mobile-nav li a{
+	color: #989AA4;
+	display: block;
+	padding: 15px 20px;
+	text-decoration: none;
+}
+
+.mobile-four .mobile-nav li a:visited{
+	color: #989AA4;
+	display: block;
+	padding: 15px 20px;
+	text-decoration: none;
+}
+
+.mobile-four .mobile-nav li a:hover{
+	color: #fff;
+}
