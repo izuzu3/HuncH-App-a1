@@ -3,7 +3,7 @@
  var i=0;
  window.onload = function() {
 	var wsuri;
-	wsuri = "ws://192.168.1.10:8500";
+	wsuri = "ws://192.168.1.3:9000";
 	if ("WebSocket" in window) {
 	   sock = new WebSocket(wsuri);
 	} else if ("MozWebSocket" in window) {
