@@ -1,14 +1,18 @@
 var menu = "close";
 
 $(document).ready(function() {
-$(".mobile-four .menu-toggle").click(function() {
+$(".mobile-four .menu-toggle").hover(function() {
     
     if (menu === "close") {
       	$(this).parent().next(".mobile-nav").css("transform", "translate(0, 0)");
-     	menu = "open";
+		$(this).parent().next(".mobile-nav").css("transition-duration", "0.5s");
+		$(this).parent().next(".mobile-nav").css("transition-delay", "1s");
+		menu = "open";
     } else {
       	$(this).parent().next(".mobile-nav").css("transform", "translate(0, -999%)");
-      	menu = "close";
+		$(this).parent().next(".mobile-nav").css("transition-duration", "2s");
+		$(this).parent().next(".mobile-nav").css("transition-delay", "1s");
+		menu = "close";
 	}
 });
 });
