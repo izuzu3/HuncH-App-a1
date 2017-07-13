@@ -4,8 +4,6 @@
     text-align: center;
 }
 
-/* ALL MOBILES */
-
 .ui-page.ui-body-c {
     background: url("../icons/MsgBox.png");
     background-repeat:no-repeat;
@@ -14,9 +12,17 @@
 	position: fixed;
 	z-index: 100;
 }
+/*Anim Begin */
 
+  /*End*/
 a{
 	text-decoration: none;
+}
+
+td{
+	text-shadow: none;
+	font-weight: bold;
+	color: white;
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -62,6 +68,74 @@ h1, h2, h3, h4, h5, h6{
 	z-index: -1;
 }
 
+.company-logo{
+	padding: 0;
+	margin: 0 auto;
+	background-image: url("../icons/faviconVR.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 32px;
+	height:32px;
+	margin-bottom: -32px;
+}
+
+.setting-icon{
+	padding: 0;
+	background-image: url("../icons/Button-Settings - Copy.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 29px;
+	height:29px;
+	position: relative;
+	float: left;
+	margin-top: 40 px;
+	border: none;
+}
+
+.back-icon{
+	padding: 0;
+	background-image: url("../icons/NavBack.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 29px;
+	height:29px;
+	position: relative;
+	float: left;
+	margin-top: 40 px;
+	border: none;
+}
+
+
+.power-icon{
+	padding: 0;
+	background-image: url("../icons/Button-Power - Copy.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 29px;
+	height:29px;
+	position: relative;
+	float: right;
+	margin-top: 40 px;
+	border: none;
+}
+
+.ShowInfoModule{
+	text-shadow: none;
+	color: 
+}
+
+table{
+	margin: 0 auto;
+}
+
+#footer-container{
+	padding:0;
+}
+
 /* MOBILE FOUR */
 
 .mobile-four{
@@ -85,6 +159,14 @@ h1, h2, h3, h4, h5, h6{
 }
 
 
+.ShowInfoModule{
+	padding: 2px;
+	margin: 0;
+	position: absolute;
+	top: 80px;
+	display: block;
+	z-index: -1;
+}
 /*-------- Living Room ----------------*/
 #l_pendt{
 	background-image: url("../icons/Button-Pendant.png");
@@ -168,8 +250,8 @@ h1, h2, h3, h4, h5, h6{
 }
 
 /*------ Bedroom ------*/
-#b_pendt{
-	background-image: url("../icons/Button-Pendant.png");
+#b_wlight{
+	background-image: url("../icons/Button-Wall.png");
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 	background-size: cover;
@@ -210,8 +292,8 @@ h1, h2, h3, h4, h5, h6{
 }
 
 /*--- Rest room ---------*/
-#r_pendt{
-	background-image: url("../icons/Button-Pendant.png");
+#r_wlight{
+	background-image: url("../icons/Button-Wall.png");
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 	background-size: cover;
@@ -251,17 +333,6 @@ h1, h2, h3, h4, h5, h6{
 	border:none;
 }
 
-
-#setting_icon{
-	background-image: url("../icons/Button-Settings - Copy.png");
-	background-repeat: no-repeat;
-	background-position: 50% 50%;
-	background-size: cover;
-	width: 75px;
-	height: 52px;
-	border:none;
-}
-
 #home_icon{
 	background-image: url("../icons/Button-Home.png");
 	background-repeat: no-repeat;
@@ -273,6 +344,46 @@ h1, h2, h3, h4, h5, h6{
 }
 
 
+#Living-Icon{
+	background-image: url("../icons/Button-LivingRoom.png" );
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 140px;
+	height: 99px;
+	border: none;
+}
+
+
+#Kitchen-Icon{
+	background-image: url("../icons/Button-Kitchen.png" );
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 140px;
+	height: 99px;
+	border:none;
+}
+
+#Bed-Icon{
+	background-image: url("../icons/Button-BedRoom.png" );
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 140px;
+	height: 99px;
+	border:none;
+}
+
+#Rest-Icon{
+	background-image: url("../icons/Button-BathRoom.png" );
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 140px;
+	height: 99px;
+	border:none;
+}
 
 .mobile-four .mobile-nav li a{
 	color: #989AA4;
