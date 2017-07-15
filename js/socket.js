@@ -59,7 +59,7 @@ window.onload = function() {
 	findServers(9700, "192.168.1.", 1, 20, 255, 4000, function(servers) {
 		if(serverStatus == 0){
 			alert("Switching to Remote");
-			window.location.replace("http://52.66.169.156/Hunchtest/CallHunch");
+			window.location.replace("http://13.58.235.223/Hunch/CallHunch");
 		}
 	});
 }
