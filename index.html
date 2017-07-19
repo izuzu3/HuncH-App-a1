@@ -1,409 +1,456 @@
-<!DOCTYPE html> 
-<html>
-<head>
+.mobile-wrapper{
+	width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dashboard</title>
+.ui-page.ui-body-c {
+    background: url("../icons/MsgBox.png");
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;
+	position: fixed;
+	z-index: 100;
+}
 
-<!--
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
--->
+/*MENU CSS*/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.dropdown{
+	text-align: center;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    padding: 7px 8px;
+    text-decoration: none;
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+}
+
+.dropdown-content a {
+    text-decoration: none;
+    display: block;
+    text-align: center;
+	padding: 25px;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+	position: relative;
+	z-index: 1000;
+
+}
+/*END MENU*/
+
+  /*End*/
+a{
+	text-decoration: none;
+}
+
+td{
+	text-shadow: none;
+	font-weight: bold;
+	color: white;
+}
+
+h1, h2, h3, h4, h5, h6{
+	color: #fff;
+	font-weight: 200;
+	margin: 0;
+	padding: 10px 0;
+}
+
+.menu-text{
+	text-align: center;
+}
+
+.btn-container{
+	padding: 2px;
+	margin: 0;
+	position: absolute;
+	top: 80px;
+	display: block;
+	z-index: -1;
+}
+
+.company-logo{
+	padding: 0;
+	margin: 0 auto;
+	background-image: url("../icons/faviconVR.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 32px;
+	height:32px;
+	margin-bottom: -32px;
+}
+
+.company-logo .setting-icon .remote-icon .back-icon .power-icon:hover{
+	box-shadow: 1px 1px 1px 1px#888888;	
+	border: 2px solid red;
+}
+
+.setting-icon{
+	padding: 0;
+	background-image: url("../icons/Button-Settings - Copy.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 34px;
+	height:34px;
+	position: relative;
+	float: left;
+	margin-top: 40 px;	
+	cursor: pointer;
+}
+
+.remote-icon{
+	padding: 0;
+	background-image: url("../icons/data-icon.svg_0.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 19px;
+	height:19px;
+	position: relative;
+	float: left;
+	margin-top: 40 px;
+	cursor: pointer;
+}
 
 
-<link rel="stylesheet" href="jq/jquery.mobile-1.0.min.css">
-<script src="jq/jquery-1.6.4.min.js"></script>
-<script src="jq/jquery.mobile-1.0.min.js"></script>
-
-<link rel="stylesheet" href="css/style.css">
-<script src="js/index.js"></script>
-<!-- <script src="js/socket.js"></script> -->
-</head> 
-
-<body> 
-
-<div class="mobile mobile-four" data-role="page" id="Living-Room">
-<div data-role="header">
-<p class="menu-text">Living Room</p>   
-	<div>
-	<ul class='dropdown'>
-		<li id="top"><div id="icon-arrow-down"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>
-		<span></span>
-		<ul class="dropdown-box">
-		   <li><a href='#Kitchen'>Kitchen</a></li>
-		   <li><a href='#Bed-Room'>BedRoom</a></li>
-		   <li><a href='#Bath-Room'>Bathroom</a></li>
-		</ul>
-		</li>
-	</ul>
-</div>   
-</div>
-		  
-	
-	<div data-role="content">
-		<div class="btn-container">
-		<table>
-		<tr>
-			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="l_pendt"  onclick='l1();'></a></td>
-			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="l_wlight" onclick='l2();'></a></td>					
-		</tr>
-		<tr>
-			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="l_fan" onclick='broadcast;'></a></td>
-			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="l_tmpctrl" onclick='broadcast();'></a></td>
-		</tr>
-		</table>
-		</div>
-	</div>
-	
-	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
-		<div class="company-logo"></div>
-		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
-	</div>
-</div>
-
-<div class="mobile mobile-four" data-role="page" id="Kitchen">
-	<div data-role="header">
-		<div class="menu-toggle">
-				<p class="menu-text">Kitchen</p>   
-			<div id="icon-arrow-down"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>
-		</div>
-	</div>
-		  
-	<div class="mobile-nav">
-		<ul>
-			<li><a href="#Living-Room"onclick="l_getstatus()">Living Room</a></li>
-			<li><a href="#Bed-Room" onclick="b_getstatus()">Bed Room</a></li>
-			<li><a href="#Bath-Room" onclick="r_getstatus()">Bath Room</a></li>
-		</ul>
-	</div>	
-		
-		
-	<div data-role="content">
-		<div class="btn-container">
-		<table>
-		<tr>
-			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="k_pendt" onclick="k1()"></a></td>
-			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="k_wlight" onclick="k2()"></a></td>
-		</tr>
-		<tr>
-			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="k_fan"></a></td>
-			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="k_vents"></a></td>
-		</tr>
-		</table>
-		</div>
-	</div>
-  
-	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
-		<div class="company-logo"></div>
-		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
-	</div>
-</div>
+.back-icon{
+	padding: 0;
+	background-image: url("../icons/NavBack.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 34px;
+	height:34px;
+	position: relative;
+	float: left;
+	margin-top: 40 px;
+	cursor: pointer;
+}
 
 
-<div class="mobile mobile-four" data-role="page" id="Bed-Room">
-	<div data-role="header">
-		<div class="menu-toggle">
-		<p class="menu-text">Bed Room</p>        
-			<div id="icon-arrow-down"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>			
-		</div>
-	</div>
-	<div class="mobile-nav">
-		<ul>
-			<li><a href="#Kitchen" onclick="k_getstatus()">Kitchen</a></li>
-			<li><a href="#Living-Room" onclick="l_getstatus()"> Living Room</a></li>
-			<li><a href="#Bath-Room" onclick="r_getstatus()">Bath Room</a></li>
-		</ul>
-	</div>
+.power-icon{
+	padding: 0;
+	background-image: url("../icons/Button-Power - Copy.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 34px;
+	height:34px;
+	position: relative;
+	float: right;
+	margin-top: 40 px;
+	cursor: pointer;
+}
 
-	<div data-role="content">
-		<div class="btn-container">
-		<table>
-		<tr>
-			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" name="B1T4" id="b_tlight" onclick='b1()'></a></td>
-			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" name= "B2T4"id="b_wlight" onclick='b2()' ></a></td>
-		</tr>
-		<tr>
-			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="b_fan"></a></td>
-			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="b_tmpctrl"></a></td>
-		</tr>
-		</table>
-		</div>
-	</div>
+.ShowInfoModule{
+	text-shadow: none;
+	color: 
+}
 
-	
-	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
-		<div class="company-logo"></div>
-		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
-	</div>
-</div>
+table{
+	margin: 0 auto;
+	float: left;
+}
 
-<div class="mobile mobile-four" data-role="page" id="Bath-Room">
-	<div data-role="header">
-		<div class="menu-toggle">
-		<p class="menu-text">Bath Room</p>        
-			<div id="icon-arrow-down"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>				
-		</div>
-	</div>		
-	<div class="mobile-nav">
-		<ul>
-			<li><a href="#Kitchen" onclick="k_getstatus()">Kitchen</a></li>
-			<li><a href="#Bed-Room" onclick="b_getstatus()">Bed Room</a></li>
-			<li><a href="#Living-Room" onclick="l_getstatus()">Living Room</a></li>
-		</ul>
-	</div>
-	
-	<div data-role="content">
-		<div class="btn-container">
-		<table>
-		<tr>
-			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" name="R1T4" id="r_vlight" onclick="r1()"></a></td>
-			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" name="R2T4" id="r_wlight" onclick="r2()"></a></td>
-		</tr>
-		<tr>
-			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="r_geyser"></a></td>
-			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="r_vents"></a></td>
-		</tr>
-		</table>
-		</div>
-	</div>
-		
-	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
-		<div class="company-logo"></div>
-		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
-	</div>
-</div>
+#footer-container{
+	padding:0;
+}
 
-<div class="mobile mobile-four" data-role="page" id="setting-page">		
-	<div data-role="header">
-		<div class="menu-toggle">
-		   <p class="menu-text">Setting</p>
-		   <div id="icon-arrow-down"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>							
-		</div>
-	</div>
+/* MOBILE FOUR */
 
-	<div class="mobile-nav">
-	<ul>
-		<li><a href="#Living-Room" onclick="l_getstatus()">Living Room</a></li>
-		<li><a href="#Kitchen" onclick="k_getstatus()">Kitchen</a></li>
-		<li><a href="#Bed-Room" onclick="b_getstatus()">Bed Room</a></li>
-		<li><a href="#Bath-Room" onclick="r_getstatus()">Bath Room</a></li>
-	</ul>
-	</div>	
-	
-	<div data-role="content" class="ShowInfoModule">
-		<p> Hunch Name: </p>
-		<p> Connected Locally To: <div id="localAddress"></div> </p>
-	</div>
+.mobile-four{
+	background: #1d1c29;
+    background: -webkit-linear-gradient(#1d1c29, #2f254b); 
+    background: -o-linear-gradient(#1d1c29, #2f254b); 
+    background: -moz-linear-gradient(#1d1c29, #2f254b); 
+    background: linear-gradient(#1d1c29, #2f254b);
+}
 
-	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
-		<div class="company-logo"></div>
-		<div class="back-icon" onclick="location.href='#Living-Room';"></div>
-		<div class="power-icon" onclick="location.href='#Power-page'; loadPower();"></div>
-		<a href="#Power-page" class="power-icon" onclick="loadPower();"></a>
-	</div>
-</div>
-	
-<div class="mobile mobile-four" data-role="page" id="Power-page">
-	<div data-role="header">
-		<div class="menu-toggle">
-		   <p class="menu-text">Power</p>
-		</div>
-	</div>
-	
-	<div data-role="content" class="PowerModule">
-	<table>
-	<tr>
-		<td><a data-role="button" data-theme="none"  id="Home-Icon"></a></td>
-		<td>Units: </td>
-		<td><div id="h_pwr"></div></td>
-		<td>Time: </td>
-		<td><div id="h_hour"></div></td>
-	</tr>
-	
-	<tr>
-		<td><a data-role="button" data-theme="none" href="#Living-Power" id="Living-Icon" onclick="l_powerstatus()"></a></td>
-		<td>Units: </td>
-		<td><div id="l_pwr"></div></td>
-		<td>Time: </td>
-		<td><div id="l_hour"></div></td>
-	</tr>
-	<tr>
-		<td><a data-role="button" data-theme="none" href="#Kitchen-Power" id="Kitchen-Icon" onclick="k_powerstatus()"></a></td>
-		<td>Units: </td>
-		<td><div id="k_pwr"></div> </td>
-		<td>Time: </td>
-		<td><div id="k_hour"></div></td>   
-	</tr>
-	<tr>
-		<td><a data-role="button" data-theme="none" href="#Bed-Power" id="Bed-Icon" onclick="b_powerstatus()"></a></td>
-		<td>Units: </td>
-		<td><div id="b_pwr"></div> </td>
-		<td>Time: </td>
-		<td><div id="b_hour"></div>  </td>
-	</tr>
-	<tr>
-		<td><a data-role="button" data-theme="none" href="#Rest-Power" id="Rest-Icon" onclick="r_powerstatus()"></a></td> 
-		<td> Units: </td>
-		<td><div id="r_pwr"></div> </td>
-		<td>Time: </td>
-		<td><div id="r_hour"></div></td>
-	</tr>
-	</table>
-	</div>
-	
-	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
-		<div class="company-logo"></div>
-		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
-	</div>
-</div>
-	
-<div class="mobile mobile-four" data-role="page" id="Living-Power">
-	<div data-role="header">
-		<div class="menu-toggle">
-		   <p class="menu-text">Living Room Power</p>
-		</div>
-	</div>
 
-	<div data-role="content" class="LivingPowerModule">
-	<table>
-	<tr>
-		<td><div id="l_pendt"></div></td>
-		<td> Cost <div id="l_dev1_cost"></div>Time <div id="l_dev1_time"></div></td>
-	</tr>
-	<tr>
-		<td><div id="l_wlight"></div></td>
-		<td> Cost <div id="l_dev2_cost"></div>Time <div id="l_dev2_time"></div></td>
-	</tr>
-	<tr>
-		<td><div id="l_fan"></div></td>
-		<td> Cost <div>88.88</div>Time <div>88:88</div> </td>
-	</tr>
-	<tr>
-		<td><div id="l_tmpctrl"></div></td>
-		<td> Cost <div>88.88</div>Time <div>88:88</div> </td>
-	</tr>
-	</table>
-	</div>
-	
-	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
-		<div class="company-logo"></div>
-		<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
-	</div>		
-</div>
-	
-<div class="mobile mobile-four" data-role="page" id="Bed-Power">
-	<div data-role="header">
-		<div class="menu-toggle">
-		   <p class="menu-text">Bed Room Power</p>
-		   <div id="icon-arrow-down"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>		
-		</div>
-	</div>
+.mobile-four .mobile-nav{
+	background-color: #3C3842;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	transform: translate(0, -999%);
+	-webkit-transition: all 0.6s ease-in-out;
+	-o-transition: all 0.6s ease-in-out;
+	transition: all 0.6s ease-in-out;
+}
 
-	<div data-role="content" class="BedPowerModule">
-	<table>
-	<tr>
-		<td><div id="b_tlight"></div></td>
-		<td> Cost <div id="b_dev1_cost"></div>Time <div id="b_dev1_time"></div> </td>
-	</tr>
-	
-	<tr>
-		<td><div id="b_wlight"></div></td>
-		<td> Cost <div id="b_dev2_cost"></div>Time <div id="b_dev2_time"></div></td>
-	</tr>
-	<tr>
-		<td><div id="b_fan"></div></td>
-		<td> Cost <div>88.88</div>Time <div>88:88</div> </td>
-	</tr>
-	
-	<tr>
-		<td><div id="b_tmpctrl"></div></td>
-		<td> Cost <div>88.88</div>Time <div>88:88</div></td>
-	</tr>
-	</table>
-	</div>
-			
-	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
-		<div class="company-logo"></div>
-		<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
-	</div>		
-</div>
 
-<div class="mobile mobile-four" data-role="page" id="Kitchen-Power">
-	<div data-role="header">
-		<div class="menu-toggle">
-		   <p class="menu-text">Kitchen Power</p>
-		   <div id="icon-arrow-down"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>							
-		</div>
-	</div>
+.ShowInfoModule{
+	padding: 2px;
+	margin: 0;
+	position: absolute;
+	top: 80px;
+	display: block;
+	z-index: -1;
+}
+/*-------- Living Room ----------------*/
+#l_pendt{
+	background-image: url("../icons/Button-Pendant.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 142px;
+	height: 100px;
+	border:none;
+}
 
-	<div data-role="content" class="KitchenPowerModule">
-	<table>
-	<tr>
-		<td><div id="k_pendt"></div></td>
-		<td> Cost <div id="k_dev1_cost"></div>Time <div id="k_dev1_time"></div> </td>
-	</tr>
-	
-	<tr>
-		<td><div id="k_wlight"></div></td>
-		<td> Cost <div id="k_dev2_cost"></div>Time <div id="k_dev2_time"></div></td>
-	</tr>
-	
-	<tr>
-		<td><div id="k_fan"></div></td>
-		<td> Cost <div>88.88</div>Time <div>88:88</div> </td>
-	</tr>
-	
-	<tr>
-		<td><div id="k_vents"></div></td>
-		<td> Cost <div>88.88</div>Time <div>88:88</div></td>
-	</tr>
-	</table>
-	</div>
-			
-	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
-		<div class="company-logo"></div>
-		<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
-	</div>		
-</div>
-	
-<div class="mobile mobile-four" data-role="page" id="Rest-Power">
-	<div data-role="header">
-	<div class="menu-toggle">
-	   <p class="menu-text">Rest Room Power</p>
-	   <div id="icon-arrow-down"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>							
-	</div>
-	</div>
+#l_wlight{
+	background-image: url("../icons/Button-Wall.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 142px;
+	height: 100px;
+	border:none;
+}
 
-	<div data-role="content" class="RestPowerModule">
-	<table>
-	<tr>
-		<td><div id="r_vlight"></div></td>
-		<td> Cost <div id="r_dev1_cost"></div>Time <div id="r_dev1_time"></div> </td>
-	</tr>
-	
-	<tr>
-		<td><div id="r_wlight"></div></td>
-		<td> Cost <div id="r_dev2_cost"></div>Time <div id="r_dev2_time"></div></td>
-	</tr>
-	
-	<tr>
-		<td><div id="r_vents"></div></td>
-		<td> Cost <div>88.88</div>Time <div>88:88</div> </td>
-	</tr>
-	
-	<tr>
-		<td><div id="r_geyser"></div></td>
-		<td> Cost <div>88.88</div>Time <div>88:88</div></td>
-	</tr>
-	</table>
-	</div>
-			
-	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
-		<div class="company-logo"></div>
-		<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
-	</div>		
-</div>
+#l_fan{
+	background-image: url("../icons/Button-Fan.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 142px;
+	height: 100px;
+	border:none;
+}
 
-</body>	
-</html>
+#l_tmpctrl{
+	background-image: url("../icons/Button-AC.png" );
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 142px;
+	height: 100px;
+	border:none;
+}
+
+/*---- Kitchen ------*/
+#k_pendt{
+	background-image: url("../icons/Button-Pendant.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 142px;
+	height: 100px;
+	border:none;
+}
+
+#k_wlight{
+	background-image: url("../icons/Button-Wall.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 142px;
+	height: 100px;
+	border:none;
+}
+
+#k_fan{
+	background-image: url("../icons/Button-Fan.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 142px;
+	height: 100px;
+	border:none;
+}
+
+#k_vents{
+	background-image: url("../icons/Button-Exhaust.png" );
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 142px;
+	height: 100px;
+	border:none;
+}
+
+/*------ Bedroom ------*/
+#b_wlight{
+	background-image: url("../icons/Button-Wall.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 142px;
+	height: 100px;
+	border:none;
+}
+
+#b_fan{
+	background-image: url("../icons/Button-Fan.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 142px;
+	height: 100px;
+	border:none;
+}
+
+
+#b_tmpctrl{
+	background-image: url("../icons/Button-AC.png" );
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 142px;
+	height: 100px;
+	border:none;
+}
+
+#b_tlight{
+	background-image: url("../icons/Button-TableLight.png" );
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 142px;
+	height: 100px;
+	border:none;
+}
+
+/*--- Rest room ---------*/
+#r_wlight{
+	background-image: url("../icons/Button-Wall.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 142px;
+	height: 100px;
+	border:none;
+}
+
+
+#r_vents{
+	background-image: url("../icons/Button-Exhaust.png" );
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 142px;
+	height: 100px;
+	border:none;
+}
+
+#r_vlight{
+	background-image: url("../icons/Button-VanityLight.png" );
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 142px;
+	height: 100px;
+	border:none;
+}
+
+#r_geyser{
+	background-image: url("../icons/Button-HotWater.png" );
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 142px;
+	height: 100px;
+	border:none;
+}
+
+#home_icon{
+	background-image: url("../icons/Button-Home.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 75px;
+	height: 52px;
+	border:none;
+}
+
+
+#Living-Icon{
+	background-image: url("../icons/Button-LivingRoom.png" );
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 140px;
+	height: 99px;
+	border: none;
+}
+
+
+#Kitchen-Icon{
+	background-image: url("../icons/Button-Kitchen.png" );
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 140px;
+	height: 99px;
+	border:none;
+}
+
+#Bed-Icon{
+	background-image: url("../icons/Button-BedRoom.png" );
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 140px;
+	height: 99px;
+	border:none;
+}
+
+#Rest-Icon{
+	background-image: url("../icons/Button-Bathroom.png" );
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 140px;
+	height: 99px;
+	border:none;
+}
+
+#Home-Icon{
+	background-image: url("../icons/Button-Home.png" );
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	width: 140px;
+	height: 99px;
+	border:none;
+}
+
+.mobile-four .mobile-nav li a{
+	color: #989AA4;
+	display: block;
+	padding: 15px 20px;
+	text-decoration: none;
+}
+
+.mobile-four .mobile-nav li a:visited{
+	color: #989AA4;
+	display: block;
+	padding: 15px 20px;
+	text-decoration: none;
+}
+
+.mobile-four .mobile-nav li a:hover{
+	color: #fff;
+}
