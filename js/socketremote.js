@@ -14,7 +14,6 @@ socket.onopen = function() {
 		alert(address + " success");
 		document.getElementById('localAddress').innerHTML += address;
 		sock=socket;
-		sock.send("")
 		serverStatus = 1;
 		l_getstatus();
 	}
