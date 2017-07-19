@@ -55,8 +55,7 @@ h1, h2, h3, h4, h5, h6{
 
 
 .mobile-nav ul li:hover{
-	box-shadow: 1px 1px 1px 1px#888888;
-	
+	box-shadow: 1px 1px 1px 1px#888888;	
 }
 
 .btn-container{
@@ -80,6 +79,11 @@ h1, h2, h3, h4, h5, h6{
 	margin-bottom: -32px;
 }
 
+.company-logo .setting-icon .remote-icon .back-icon .power-icon:hover{
+	box-shadow: 1px 1px 1px 1px#888888;	
+	border: 2px solid red;
+}
+
 .setting-icon{
 	padding: 0;
 	background-image: url("../icons/Button-Settings - Copy.png");
@@ -90,8 +94,8 @@ h1, h2, h3, h4, h5, h6{
 	height:34px;
 	position: relative;
 	float: left;
-	margin-top: 40 px;
-	border: none;
+	margin-top: 40 px;	
+	cursor: pointer;
 }
 
 .remote-icon{
@@ -105,7 +109,7 @@ h1, h2, h3, h4, h5, h6{
 	position: relative;
 	float: left;
 	margin-top: 40 px;
-	border: none;
+	cursor: pointer;
 }
 
 
@@ -120,7 +124,7 @@ h1, h2, h3, h4, h5, h6{
 	position: relative;
 	float: left;
 	margin-top: 40 px;
-	border: none;
+	cursor: pointer;
 }
 
 
@@ -135,7 +139,7 @@ h1, h2, h3, h4, h5, h6{
 	position: relative;
 	float: right;
 	margin-top: 40 px;
-	border: none;
+	cursor: pointer;
 }
 
 .ShowInfoModule{
