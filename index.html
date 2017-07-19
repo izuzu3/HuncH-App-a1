@@ -58,7 +58,7 @@
 	
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
 		<div class="company-logo"></div>
-		<a href="#setting-page" class="setting-icon"></a>
+		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
 	</div>
 </div>
 
@@ -96,7 +96,7 @@
   
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
 		<div class="company-logo"></div>
-		<a href="#setting-page" class="setting-icon"></a>
+		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
 	</div>
 </div>
 
@@ -133,7 +133,7 @@
 	
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
 		<div class="company-logo"></div>
-		<a href="#setting-page" class="setting-icon"></a>
+		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
 	</div>
 </div>
 
@@ -169,7 +169,7 @@
 		
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
 		<div class="company-logo"></div>
-		<a href="#setting-page" class="setting-icon"></a>
+		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
 	</div>
 </div>
 
@@ -197,8 +197,9 @@
 
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
 		<div class="company-logo"></div>
-		<a href="#"data-rel="back" class="back-icon"></a>
-		<a href="#Power-page" class="power-icon" onclick="loadPower();"></a>
+		<div class="back-icon" onclick="location.href='#Living-Room';"></div>
+		<div class="power-icon" onclick="location.href='#Power-page'; loadPower();"></div>
+		<!--<a href="#Power-page" class="power-icon" onclick="loadPower();"></a>-->
 	</div>
 </div>
 	
@@ -213,28 +214,39 @@
 	<table>
 	<tr>
 		<td><a data-role="button" data-theme="none" href="#Living-Power" id="Living-Icon" onclick="l_powerstatus()"></a></td>
-		<td>Units: <div id="l_pwr"> </div>Time: <div id="l_hour"></div>  </td>
+		<td>Units: </td>
+		<td><div id="l_pwr"></div></td>
+		<td>Time: </td>
+		<td><div id="l_hour"></div></td>
 	</tr>
 	<tr>
 		<td><a data-role="button" data-theme="none" href="#Kitchen-Power" id="Kitchen-Icon" onclick="k_powerstatus()"></a></td>
-		<td>Units: <div id="k_pwr"></div> Time: <div id="k_hour"></div></td>   
+		<td>Units: </td>
+		<td><div id="k_pwr"></div> </td>
+		<td>Time: </td>
+		<td><div id="k_hour"></div></td>   
 	</tr>
 	<tr>
 		<td><a data-role="button" data-theme="none" href="#Bed-Power" id="Bed-Icon" onclick="b_powerstatus()"></a></td>
-		<td>Units: <div id="b_pwr"></div>Time: <div id="b_hour"></div>  </td>
+		<td>Units: </td>
+		<td><div id="b_pwr"></div> </td>
+		<td>Time: </td>
+		<td><div id="b_hour"></div>  </td>
 	</tr>
 	<tr>
 		<td><a data-role="button" data-theme="none" href="#Rest-Power" id="Rest-Icon" onclick="r_powerstatus()"></a></td> 
-		<td> Units: <div id="r_pwr"></div>Time:<div id="r_hour"></div></td>
+		<td> Units: </td>
+		<td><div id="r_pwr"></div> </td>
+		<td>Time: </td>
+		<td><div id="r_hour"></div></td>
 	</tr>
 	</table>
 	</div>
 	
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
 		<div class="company-logo"></div>
-		<a href="#setting-page" class="back-icon"></a>
+		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
 	</div>
-
 </div>
 	
 <div class="mobile mobile-four" data-role="page" id="Living-Power">
@@ -267,7 +279,7 @@
 	
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
 		<div class="company-logo"></div>
-		<a href="#"data-rel="back" class="back-icon"></a>
+		<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
 	</div>		
 </div>
 	
@@ -304,7 +316,7 @@
 			
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
 		<div class="company-logo"></div>
-		<a href="#"data-rel="back" class="back-icon"></a>
+		<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
 	</div>		
 </div>
 
@@ -342,7 +354,7 @@
 			
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
 		<div class="company-logo"></div>
-		<a href="#"data-rel="back" class="back-icon"></a>	
+		<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
 	</div>		
 </div>
 	
@@ -380,7 +392,7 @@
 			
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
 		<div class="company-logo"></div>
-		<a href="#"data-rel="back" class="back-icon"></a>
+		<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
 	</div>		
 </div>
 	
