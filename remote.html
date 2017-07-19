@@ -3,15 +3,7 @@
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dashboard</title>
-
-<!--
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
--->
-
-                   
+<title>Dashboard</title>                  
 <link rel="stylesheet" href="jq/jquery.mobile-1.0.min.css">
 <script src="jq/jquery-1.6.4.min.js"></script>
 <script src="jq/jquery.mobile-1.0.min.js"></script>
@@ -59,7 +51,7 @@
 	
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
 		<div class="company-logo"></div>
-		<a href="#setting-page" class="setting-icon"></a>
+		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
 	</div>
 </div>
 
@@ -98,7 +90,7 @@
   
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
 		<div class="company-logo"></div>
-		<a href="#setting-page" class="setting-icon"></a>
+		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
 	</div>
 </div>
 
@@ -136,7 +128,7 @@
 	
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
 		<div class="company-logo"></div>
-		<a href="#setting-page" class="setting-icon"></a>
+		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
 	</div>
 </div>
 
@@ -173,7 +165,7 @@
 		
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
 		<div class="company-logo"></div>
-		<a href="#setting-page" class="setting-icon"></a>
+		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
 	</div>
 </div>
 
@@ -202,8 +194,8 @@
 
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
 		<div class="company-logo"></div>
-		<a href="#"data-rel="back" class="back-icon"></a>
-		<a href="#Power-page" class="power-icon" onclick="loadPower();"></a>
+		<div class="back-icon" onclick="location.href='#Living-Room';"></div>
+		<div class="power-icon" onclick="location.href='#Power-page'; loadPower();"></div>
 	</div>
 </div>
 	
@@ -250,9 +242,8 @@
 	
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
 		<div class="company-logo"></div>
-		<a href="#setting-page" class="back-icon"></a>
+		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
 	</div>
-
 </div>
 	
 <div class="mobile mobile-four" data-role="page" id="Living-Power">
@@ -290,7 +281,7 @@
 	
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
 	<div class="company-logo"></div>
-		<a href="#"data-rel="back" class="back-icon"></a>
+	<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
 	</div>		
 </div>
 	
@@ -331,8 +322,8 @@
 	</div>
 			
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
-		<div class="company-logo"></div>
-		<a href="#"data-rel="back" class="back-icon"></a>
+	<div class="company-logo"></div>
+	<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
 	</div>		
 </div>
 
@@ -374,8 +365,8 @@
 	</div>
 			
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
-		<div class="company-logo"></div>
-		<a href="#"data-rel="back" class="back-icon"></a>	
+	<div class="company-logo"></div>
+	<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
 	</div>		
 </div>
 	
@@ -417,8 +408,8 @@
 	</div>
 			
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
-		<div class="company-logo"></div>
-		<a href="#"data-rel="back" class="back-icon"></a>
+	<div class="company-logo"></div>
+	<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
 	</div>		
 </div>
 	
