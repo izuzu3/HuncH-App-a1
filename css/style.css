@@ -12,80 +12,51 @@
 	position: fixed;
 	z-index: 100;
 }
-@import "compass/css3";
 
-a{
-	text-decoration: none; 
-	color: inherit;
-}
-
-ul li{
-	list-style-type: none;
+/*MENU CSS*/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 .dropdown{
-	@include size;
-	margin: 0 auto;
-	/* background-color: $flat;*/
 	text-align: center;
 }
 
-.dropdown li ul li:hover{
-	list-style: none;
-	border: 2px solid red;
-	margin: 10 px;
+li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    padding: 7px 8px;
+    text-decoration: none;
 }
 
-.dropdown li ul li{
-	margin-top: 0 auto;
-	/*border-bottom: 1px solid darken($base, 5%);*/
-	border: 2px solid red;
-	padding: 10px;
+li.dropdown {
+    display: inline-block;
 }
 
-.dropdown li ul li:first-child{
-	margin-top: 6px;
-}
-
-.dropdown li .dropdown-box{
-	height: 0;
-	overflow: hidden;
+.dropdown-content {
     display: none;
-    /*background-color: $base;*/
-    width: 100%;
-    @include position;
-    margin-bottom: -15px;
-    margin-top: 13px;
-    border-top: 20px solid $dark;
-    padding: 0;
-    @include size;
+    position: absolute;
 }
 
-.dropdown li:hover .dropdown-box, .dropdown li:active .dropdown-box {
-	display:block;
-	/*background-color: $base;*/
-	animation: box 2s ease;
-	animation-iteration-count: 1;
-	animation-fill-mode: forwards;
+.dropdown-content a {
+    text-decoration: none;
+    display: block;
+    text-align: center;
+	padding: 25px;
 }
 
-@keyframes box {
-  from {height: 0;}
-  to {height: 183px;}
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+	position: relative;
+	z-index: 1000;
+
 }
-/*
-.dropdown li:hover span{
-	width: 0;
-	height: 0;
-	border-left: 5px solid transparent;
-	border-right: 5px solid transparent;
-	border-bottom: 10px solid $base;
-	margin-top: 42px;
-	position: absolute;
-	margin-left: -40px;
-	}
-*/
-/*Anim Begin */
+/*END MENU*/
 
   /*End*/
 a{
@@ -105,33 +76,10 @@ h1, h2, h3, h4, h5, h6{
 	padding: 10px 0;
 }
 
-/*
-.menu-toggle{
+.menu-text{
 	text-align: center;
-	cursor:  pointer;
 }
 
-.mobile-nav{
-	opacity: 0.9;
-	font-weight: 200;
-}
-
-.mobile-nav ul{
-	padding: 0;
-	margin: 0;
-	list-style-type: none;
-	position: relative;
-	z-index: 1000;
-	padding: 18px 20px 18px 20px;
-	text-shadow: none;
-	box-shadow: 
-}
-
-
-.mobile-nav ul li:hover{
-	box-shadow: 1px 1px 1px 1px#888888;	
-}
-*/
 .btn-container{
 	padding: 2px;
 	margin: 0;
