@@ -602,7 +602,7 @@ function b1() {
 };
   
    
-/*-------- Rest Room-----------*/
+/*-------- Rest Room--------*/
 function r1() {
 	var msg = document.getElementById("r_vlight").name;
 	if (sock) {
