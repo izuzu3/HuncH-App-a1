@@ -146,12 +146,11 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .PowerModule{
-	border: 2px solid red;
 	padding: 0;
 	width:1360px; 
-    overflow-y:scroll; 
+    overflow-y: auto; 
     position:relative;
-    height: 565px;
+    height: 555px;
 }
 
 
