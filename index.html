@@ -17,7 +17,6 @@
 <script src="jq/jquery.mobile-1.0.min.js"></script>
 
 <link rel="stylesheet" href="css/style.css">
-<script src="js/index.js"></script>
 <script src="js/socket.js"></script>
 </head> 
 
@@ -183,7 +182,7 @@
 		<p> Connected Locally To: <div id="localAddress"></div> </p>
 	</div>
 
-	<div class="Hunch-footer" data-role="footer" data-position="absolute" id="footer-container2">
+	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container2">
 		<div class="company-logo"></div>
 		<div class="back-icon" onclick="location.href='#Living-Room';"></div>
 		<div class="power-icon" onclick="location.href='#Power-page'; loadPower();"></div>
@@ -255,19 +254,23 @@
 	<table>
 	<tr>
 		<td><div id="l_pendt"></div></td>
-		<td> Cost <div id="l_dev1_cost"></div>Time <div id="l_dev1_time"></div></td>
+		<td> Cost </td> <td><div id="l_dev1_cost"></div></td>
+		<td>Time  </td> <td><div id="l_dev1_time"></div></td>
 	</tr>
 	<tr>
 		<td><div id="l_wlight"></div></td>
-		<td> Cost <div id="l_dev2_cost"></div>Time <div id="l_dev2_time"></div></td>
+		<td> Cost </td><td><div id="l_dev2_cost"></div></td>
+		<td>Time </td><td><div id="l_dev2_time"></div></td>
 	</tr>
 	<tr>
 		<td><div id="l_fan"></div></td>
-		<td> Cost <div>88.88</div>Time <div>88:88</div> </td>
+		<td> Cost </td><td><div>88.88</div></td>
+		<td>Time </td><td><div>88:88</div> </td>
 	</tr>
 	<tr>
 		<td><div id="l_tmpctrl"></div></td>
-		<td> Cost <div>88.88</div>Time <div>88:88</div> </td>
+		<td> Cost </td><td><div>88.88</div></td>
+		<td>Time </td><td><div>88:88</div> </td>
 	</tr>
 	</table>
 	</div>
@@ -282,7 +285,6 @@
 	<div data-role="header">
 		<div class="menu-toggle">
 		   <p class="menu-text">Bed Room Power</p>
-		   <div id="icon-arrow-down"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>		
 		</div>
 	</div>
 
@@ -290,21 +292,25 @@
 	<table>
 	<tr>
 		<td><div id="b_tlight"></div></td>
-		<td> Cost <div id="b_dev1_cost"></div>Time <div id="b_dev1_time"></div> </td>
+		<td> Cost </td><td><div id="b_dev1_cost"></div></td>
+		<td>Time </td><td><div id="b_dev1_time"></div> </td>
 	</tr>
 	
 	<tr>
 		<td><div id="b_wlight"></div></td>
-		<td> Cost <div id="b_dev2_cost"></div>Time <div id="b_dev2_time"></div></td>
+		<td> Cost </td><td><div id="b_dev2_cost"></div></td>
+		<td>Time </td><td><div id="b_dev2_time"></div></td>
 	</tr>
 	<tr>
 		<td><div id="b_fan"></div></td>
-		<td> Cost <div>88.88</div>Time <div>88:88</div> </td>
+		<td> Cost </td><td><div>88.88</div></td>
+		<td>Time </td><td><div>88:88</div> </td>
 	</tr>
 	
 	<tr>
 		<td><div id="b_tmpctrl"></div></td>
-		<td> Cost <div>88.88</div>Time <div>88:88</div></td>
+		<td> Cost </td><td><div>88.88</div></td>
+		<td>Time </td><td><div>88:88</div></td>
 	</tr>
 	</table>
 	</div>
@@ -319,7 +325,6 @@
 	<div data-role="header">
 		<div class="menu-toggle">
 		   <p class="menu-text">Kitchen Power</p>
-		   <div id="icon-arrow-down"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>							
 		</div>
 	</div>
 
@@ -327,22 +332,26 @@
 	<table>
 	<tr>
 		<td><div id="k_pendt"></div></td>
-		<td> Cost <div id="k_dev1_cost"></div>Time <div id="k_dev1_time"></div> </td>
+		<td> Cost </td><td><div id="k_dev1_cost"></div></td>
+		<td>Time </td><td><div id="k_dev1_time"></div> </td>
 	</tr>
 	
 	<tr>
 		<td><div id="k_wlight"></div></td>
-		<td> Cost <div id="k_dev2_cost"></div>Time <div id="k_dev2_time"></div></td>
+		<td> Cost </td><td><div id="k_dev2_cost"></div></td>
+		<td>Time </td><td><div id="k_dev2_time"></div></td>
 	</tr>
 	
 	<tr>
 		<td><div id="k_fan"></div></td>
-		<td> Cost <div>88.88</div>Time <div>88:88</div> </td>
+		<td> Cost </td><td><div>88.88</div></td>
+		<td>Time </td><td><div>88:88</div> </td>
 	</tr>
 	
 	<tr>
 		<td><div id="k_vents"></div></td>
-		<td> Cost <div>88.88</div>Time <div>88:88</div></td>
+		<td> Cost </td><td><div>88.88</div></td>
+		<td>Time </td><td><div>88:88</div></td>
 	</tr>
 	</table>
 	</div>
@@ -357,7 +366,6 @@
 	<div data-role="header">
 	<div class="menu-toggle">
 	   <p class="menu-text">Rest Room Power</p>
-	   <div id="icon-arrow-down"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>							
 	</div>
 	</div>
 
@@ -365,22 +373,26 @@
 	<table>
 	<tr>
 		<td><div id="r_vlight"></div></td>
-		<td> Cost <div id="r_dev1_cost"></div>Time <div id="r_dev1_time"></div> </td>
+		<td> Cost </td><td><div id="r_dev1_cost"></div></td>
+		<td>Time </td><td><div id="r_dev1_time"></div> </td>
 	</tr>
 	
 	<tr>
 		<td><div id="r_wlight"></div></td>
-		<td> Cost <div id="r_dev2_cost"></div>Time <div id="r_dev2_time"></div></td>
+		<td> Cost </td><td><div id="r_dev2_cost"></div></td>
+		<td>Time </td><td><div id="r_dev2_time"></div></td>
 	</tr>
 	
 	<tr>
 		<td><div id="r_vents"></div></td>
-		<td> Cost <div>88.88</div>Time <div>88:88</div> </td>
+		<td> Cost </td><td><div>88.88</div></td>
+		<td>Time </td><td><div>88:88</div> </td>
 	</tr>
 	
 	<tr>
 		<td><div id="r_geyser"></div></td>
-		<td> Cost <div>88.88</div>Time <div>88:88</div></td>
+		<td> Cost </td><td><div>88.88</div></td>
+		<td>Time </td><td><div>88:88</div></td>
 	</tr>
 	</table>
 	</div>
