@@ -147,7 +147,10 @@ h1, h2, h3, h4, h5, h6{
 
 .PowerModule{
 	border: 2px solid red;
-	overflow: scroll;
+	width:1330px; 
+    overflow-y:scroll; 
+    position:relative;
+    height: 550px;
 }
 
 
