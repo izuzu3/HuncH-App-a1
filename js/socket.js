@@ -92,7 +92,6 @@ function getCost(data){
 /*------------ POWER STATUS -----------------*/	
 function loadPower(){
 	sock.send('LPT4');
-	
 	sock.onmessage = function(e){
 		console.log("power" +e.data);
 		var power = e.data.split(",");
@@ -113,9 +112,8 @@ function loadPower(){
 		}
 		else if (power[0] =="['r'"){
 			r_powerstatus(e.data);
-		}
-
-		h_powerstatus();
+		}	
+		h_powerstatus()
 	}
 }
 
@@ -144,9 +142,13 @@ function l_powerstatus(str){
 	var l_hours = parseFloat(l_hour_dev1) + parseFloat(l_hour_dev2);
 	var l_power = parseFloat(l_wh_dev1) + parseFloat(l_wh_dev2);
 
+	ltpower = (l_power);
+	lthours = (l_hours);
+	/*
 	h_hours = h_hours + parseFloat(l_hours);
 	h_power = h_power + parseFloat(l_power);
-	
+
+	*/
 	document.getElementById('l_hour').innerHTML = timeFormat(l_hours);
 	document.getElementById('l_pwr').innerHTML = l_power.toFixed(2);		
 
@@ -185,9 +187,13 @@ function b_powerstatus(str){
 	var b_hours = parseFloat(b_hour_dev1) + parseFloat(b_hour_dev2);
 	var b_power = parseFloat(b_wh_dev1) + parseFloat(b_wh_dev2);
 	
+	
+	btpower = parseFloat(b_power);
+	bthours = parseFloat(b_hours);
+	/*
 	h_hours = h_hours + parseFloat(b_hours);
 	h_power = h_power + parseFloat(b_power);
-	
+	*/
 	document.getElementById('b_hour').innerHTML = timeFormat(b_hours);
 	document.getElementById('b_pwr').innerHTML = b_power.toFixed(2);		
 
@@ -226,9 +232,12 @@ function r_powerstatus(str){
 	var r_hours = parseFloat(r_hour_dev1) + parseFloat(r_hour_dev2);
 	var r_power = parseFloat(r_wh_dev1) + parseFloat(r_wh_dev2);
 
+	rtpower = parseFloat(r_power);
+	rthours = parseFloat(r_hours);
+	/*
 	h_hours = h_hours + parseFloat(r_hours);
 	h_power = h_power + parseFloat(r_power);
-
+	*/
 	document.getElementById('r_hour').innerHTML = timeFormat(r_hours);
 	document.getElementById('r_pwr').innerHTML = r_power.toFixed(2);		
 
@@ -267,12 +276,16 @@ function k_powerstatus(str){
 	var k_hours = parseFloat(k_hour_dev1) + parseFloat(k_hour_dev2);
 	var k_power = parseFloat(k_wh_dev1) + parseFloat(k_wh_dev2);
 			
-	h_hours = h_hours + parseFloat(k_hours);
-	h_power = h_power + parseFloat(k_power);
-
 	document.getElementById('k_hour').innerHTML = timeFormat(k_hours);
 	document.getElementById('k_pwr').innerHTML = k_power.toFixed(2);		
-
+	
+	
+	ktpower = parseFloat(k_power);
+	kthours = parseFloat(k_hours);
+	/*
+	h_hours = h_hours + parseFloat(k_hours);
+	h_power = h_power + parseFloat(k_power);
+	*/
 	document.getElementById('k_dev1_cost').innerHTML = k_cost_dev1;
 	document.getElementById('k_dev1_time').innerHTML = timeFormat(k_hour_dev1);
 
@@ -281,17 +294,6 @@ function k_powerstatus(str){
 
 	kpstatus =1;
 	powerdata_check();
-}
-
-function h_powerstatus(){
-	
-	console.log("home");
-			
-	document.getElementById('h_hour').innerHTML = timeFormat(h_hours);
-	document.getElementById('h_pwr').innerHTML = h_power.toFixed(2);		
-
-	hpstatus =1;
-	//powerdata_check();
 }
 
 function powerdata_check()
@@ -310,7 +312,18 @@ function powerdata_check()
 	}
 }
 
+function h_powerstatus(){
+	console.log("home");
+	h_hours = lthours + bthours + rthours + kthours;
+	h_power = ltpower + btpower + rtpower + ktpower;
+	document.getElementById('h_hour').innerHTML = timeFormat(h_hours);
+	document.getElementById('h_pwr').innerHTML = h_power.toFixed(2);		
+	hpstatus =1;
+}
+
+
 /*----------- INITIAL STATUS -------------------------*/
+
 
 function l_getstatus(){
 	if(sock){
@@ -648,7 +661,7 @@ function b1() {
 };
   
    
-/*-------- Rest Room-----------*/
+/*-------- Rest Room--------*/
 function r1() {
 	var msg = document.getElementById("r_vlight").name;
 	if (sock) {
