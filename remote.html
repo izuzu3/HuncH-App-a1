@@ -3,16 +3,21 @@
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dashboard</title>                  
+<title>Dashboard</title>
+
+<!--
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+-->
+
+
 <link rel="stylesheet" href="jq/jquery.mobile-1.0.min.css">
 <script src="jq/jquery-1.6.4.min.js"></script>
 <script src="jq/jquery.mobile-1.0.min.js"></script>
 
 <link rel="stylesheet" href="css/style.css">
-<script src="js/index.js"></script>
 <script src="js/socketremote.js"></script>
-
-
 </head> 
 
 <body> 
@@ -20,20 +25,18 @@
 <div class="mobile mobile-four" data-role="page" id="Living-Room">
 	<div data-role="header">
 		<div class="remote-icon"></div>
-		<div class="menu-toggle">
-				<p class="menu-text">Living Room</p>   
-			<div id="icon-arrow-down"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>
-		</div>
+		<p class="menu-text">Living Room</p>  
+		<div class="dropdown">
+			<div id="icon-arrow-down" class="dropbtn"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>
+			<div class="dropdown-content">
+				<a href="#Kitchen" onclick="k_getstatus()"><p>Kitchen</p></a>
+				<a href="#Bed-Room" onclick="b_getstatus()"><p>Bed Room</p></a>
+				<a href="#Bath-Room" onclick="r_getstatus()"><p>Bathroom</p></a>
+			</div>
+		</div>	
+	  </li>
 	</div>
-		  
-	<div class="mobile-nav">
-		<ul>
-			<li><a href="#Kitchen"onclick="k_getstatus()">Kitchen</a></li>
-			<li><a href="#Bed-Room" onclick="b_getstatus()">Bed Room</a></li>
-			<li><a href="#Bath-Room" onclick="r_getstatus()">Bath Room</a></li>
-		</ul>
-	</div>	
-	
+		  	
 	<div data-role="content">
 		<div class="btn-container">
 		<table>
@@ -57,22 +60,19 @@
 
 <div class="mobile mobile-four" data-role="page" id="Kitchen">
 	<div data-role="header">
-	<div class="remote-icon"></div>	
-		<div class="menu-toggle">
-				<p class="menu-text">Kitchen</p>   
-			<div id="icon-arrow-down"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>
-		</div>
+		<div class="remote-icon"></div>
+		<p class="menu-text">Kitchen</p>  
+		<div class="dropdown">
+			<div id="icon-arrow-down" class="dropbtn"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>
+			<div class="dropdown-content">
+				<a href="#Living-Room" onclick="l_getstatus()"><p>Living Room</p></a>
+				<a href="#Bed-Room" onclick="b_getstatus()"><p>Bed Room</p></a>
+				<a href="#Bath-Room" onclick="r_getstatus()"><p>Bathroom</p></a>
+			</div>
+		</div>	
+	  </li>
 	</div>
-		  
-	<div class="mobile-nav">
-		<ul>
-			<li><a href="#Living-Room"onclick="l_getstatus()">Living Room</a></li>
-			<li><a href="#Bed-Room" onclick="b_getstatus()">Bed Room</a></li>
-			<li><a href="#Bath-Room" onclick="r_getstatus()">Bath Room</a></li>
-		</ul>
-	</div>	
-		
-		
+				
 	<div data-role="content">
 		<div class="btn-container">
 		<table>
@@ -94,20 +94,20 @@
 	</div>
 </div>
 
+
 <div class="mobile mobile-four" data-role="page" id="Bed-Room">
 	<div data-role="header">
-	<div class="remote-icon"></div>	
-		<div class="menu-toggle">
-		<p class="menu-text">Bed Room</p>        
-			<div id="icon-arrow-down"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>			
-		</div>
-	</div>
-	<div class="mobile-nav">
-		<ul>
-			<li><a href="#Kitchen" onclick="k_getstatus()">Kitchen</a></li>
-			<li><a href="#Living-Room" onclick="l_getstatus()"> Living Room</a></li>
-			<li><a href="#Bath-Room" onclick="r_getstatus()">Bath Room</a></li>
-		</ul>
+	<div class="remote-icon"></div>
+		<p class="menu-text">Bed Room</p>  
+		<div class="dropdown">
+			<div id="icon-arrow-down" class="dropbtn"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>
+			<div class="dropdown-content">
+				<a href="#Living-Room" onclick="l_getstatus()"><p>Living Room</p></a>
+				<a href="#Bed-Room" onclick="k_getstatus()"><p>Kitchen</p></a>
+				<a href="#Bath-Room" onclick="r_getstatus()"><p>Bathroom</p></a>
+			</div>
+		</div>	
+	  </li>
 	</div>
 
 	<div data-role="content">
@@ -125,7 +125,6 @@
 		</div>
 	</div>
 
-	
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
 		<div class="company-logo"></div>
 		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
@@ -135,17 +134,16 @@
 <div class="mobile mobile-four" data-role="page" id="Bath-Room">
 	<div data-role="header">
 	<div class="remote-icon"></div>
-		<div class="menu-toggle">
-		<p class="menu-text">Bath Room</p>        
-			<div id="icon-arrow-down"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>				
-		</div>
-	</div>		
-	<div class="mobile-nav">
-		<ul>
-			<li><a href="#Kitchen" onclick="k_getstatus()">Kitchen</a></li>
-			<li><a href="#Bed-Room" onclick="b_getstatus()">Bed Room</a></li>
-			<li><a href="#Living-Room" onclick="l_getstatus()">Living Room</a></li>
-		</ul>
+		<p class="menu-text">Bath Room</p>  
+		<div class="dropdown">
+			<div id="icon-arrow-down" class="dropbtn"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>
+			<div class="dropdown-content">
+				<a href="#Living-Room" onclick="l_getstatus()"><p>Living Room</p></a>
+				<a href="#Bed-Room" onclick="b_getstatus()"><p>Bed Room</p></a>
+				<a href="#Bath-Room" onclick="k_getstatus()"><p>Kitchen</p></a>
+			</div>
+		</div>	
+	  </li>
 	</div>
 	
 	<div data-role="content">
@@ -172,27 +170,24 @@
 <div class="mobile mobile-four" data-role="page" id="setting-page">		
 	<div data-role="header">
 	<div class="remote-icon"></div>
-		<div class="menu-toggle">
-		   <p class="menu-text">Setting</p>
-		   <div id="icon-arrow-down"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>							
-		</div>
+		<p class="menu-text">Setting</p>  
+		<div class="dropdown">
+			<div id="icon-arrow-down" class="dropbtn"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>
+			<div class="dropdown-content">
+				<a href="#Living-Room" onclick="l_getstatus()"><p>Living Room</p></a>
+				<a href="#Bed-Room" onclick="b_getstatus()"><p>Bed Room</p></a>
+				<a href="#Bath-Room" onclick="r_getstatus()"><p>Bathroom</p></a>
+				<a href="#Bath-Room" onclick="k_getstatus()"><p>Kitchen</p></a>
+			</div>
+		</div>	
 	</div>
-
-	<div class="mobile-nav">
-	<ul>
-		<li><a href="#Living-Room" onclick="l_getstatus()">Living Room</a></li>
-		<li><a href="#Kitchen" onclick="k_getstatus()">Kitchen</a></li>
-		<li><a href="#Bed-Room" onclick="b_getstatus()">Bed Room</a></li>
-		<li><a href="#Bath-Room" onclick="r_getstatus()">Bath Room</a></li>
-	</ul>
-	</div>	
 	
 	<div data-role="content" class="ShowInfoModule">
 		<p> Hunch Name: </p>
 		<p> Connected Locally To: <div id="localAddress"></div> </p>
 	</div>
 
-	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
+	<div class="Hunch-footer" data-role="footer" data-position="absolute" id="footer-container2">
 		<div class="company-logo"></div>
 		<div class="back-icon" onclick="location.href='#Living-Room';"></div>
 		<div class="power-icon" onclick="location.href='#Power-page'; loadPower();"></div>
@@ -209,6 +204,14 @@
 	
 	<div data-role="content" class="PowerModule">
 	<table>
+	<tr>
+		<td><a data-role="button" data-theme="none"  id="Home-Icon"></a></td>
+		<td>Units: </td>
+		<td><div id="h_pwr"></div></td>
+		<td>Time: </td>
+		<td><div id="h_hour"></div></td>
+	</tr>
+	
 	<tr>
 		<td><a data-role="button" data-theme="none" href="#Living-Power" id="Living-Icon" onclick="l_powerstatus()"></a></td>
 		<td>Units: </td>
@@ -258,36 +261,32 @@
 	<table>
 	<tr>
 		<td><div id="l_pendt"></div></td>
-		<td> Cost : <p id="l_dev1_cost"></p> </td>
-		<td> Time  :<p id="l_dev1_time"></p></td>
+		<td> Cost <div id="l_dev1_cost"></div>Time <div id="l_dev1_time"></div></td>
 	</tr>
 	<tr>
 		<td><div id="l_wlight"></div></td>
-		<td> Cost <div id="l_dev2_cost"></div></td>
-		<td>Time <div id="l_dev2_time"></div></td>
+		<td> Cost <div id="l_dev2_cost"></div>Time <div id="l_dev2_time"></div></td>
 	</tr>
 	<tr>
 		<td><div id="l_fan"></div></td>
-		<td> Cost <div>88.88</div></td>
-		<td>Time <div>88:88</div> </td>
+		<td> Cost <div>88.88</div>Time <div>88:88</div> </td>
 	</tr>
 	<tr>
 		<td><div id="l_tmpctrl"></div></td>
-		<td> Cost <div>88.88</div></td>
-		<td>Time <div>88:88</div> </td>
+		<td> Cost <div>88.88</div>Time <div>88:88</div> </td>
 	</tr>
 	</table>
 	</div>
 	
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
-	<div class="company-logo"></div>
-	<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
+		<div class="company-logo"></div>
+		<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
 	</div>		
 </div>
 	
 <div class="mobile mobile-four" data-role="page" id="Bed-Power">
 	<div data-role="header">
-	<div class="remote-icon"></div>	
+	<div class="remote-icon"></div>
 		<div class="menu-toggle">
 		   <p class="menu-text">Bed Room Power</p>
 		   <div id="icon-arrow-down"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>		
@@ -298,32 +297,28 @@
 	<table>
 	<tr>
 		<td><div id="b_tlight"></div></td>
-		<td> Cost <div id="b_dev1_cost"></div> </td>
-		<td>Time <div id="b_dev1_time"></div> </td>
+		<td> Cost <div id="b_dev1_cost"></div>Time <div id="b_dev1_time"></div> </td>
 	</tr>
 	
 	<tr>
 		<td><div id="b_wlight"></div></td>
-		<td> Cost <div id="b_dev2_cost"></div> </td>
-		<td>Time <div id="b_dev2_time"></div></td>
+		<td> Cost <div id="b_dev2_cost"></div>Time <div id="b_dev2_time"></div></td>
 	</tr>
 	<tr>
 		<td><div id="b_fan"></div></td>
-		<td> Cost <div>88.88</div></td>
-		<td>Time <div>88:88</div> </td>
+		<td> Cost <div>88.88</div>Time <div>88:88</div> </td>
 	</tr>
 	
 	<tr>
 		<td><div id="b_tmpctrl"></div></td>
-		<td> Cost <div>88.88</div> </td>
-		<td>Time <div>88:88</div></td>
+		<td> Cost <div>88.88</div>Time <div>88:88</div></td>
 	</tr>
 	</table>
 	</div>
 			
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
-	<div class="company-logo"></div>
-	<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
+		<div class="company-logo"></div>
+		<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
 	</div>		
 </div>
 
@@ -340,33 +335,29 @@
 	<table>
 	<tr>
 		<td><div id="k_pendt"></div></td>
-		<td> Cost <div id="k_dev1_cost"></div></td>
-		<td>Time <div id="k_dev1_time"></div> </td>
+		<td> Cost <div id="k_dev1_cost"></div>Time <div id="k_dev1_time"></div> </td>
 	</tr>
 	
 	<tr>
 		<td><div id="k_wlight"></div></td>
-		<td> Cost <div id="k_dev2_cost"></div> </td>
-		<td>Time <div id="k_dev2_time"></div></td>
+		<td> Cost <div id="k_dev2_cost"></div>Time <div id="k_dev2_time"></div></td>
 	</tr>
 	
 	<tr>
 		<td><div id="k_fan"></div></td>
-		<td> Cost <div>88.88</div></td>
-		<td>Time <div>88:88</div> </td>
+		<td> Cost <div>88.88</div>Time <div>88:88</div> </td>
 	</tr>
 	
 	<tr>
 		<td><div id="k_vents"></div></td>
-		<td> Cost <div>88.88</div></td>
-		<td>Time <div>88:88</div></td>
+		<td> Cost <div>88.88</div>Time <div>88:88</div></td>
 	</tr>
 	</table>
 	</div>
 			
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
-	<div class="company-logo"></div>
-	<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
+		<div class="company-logo"></div>
+		<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
 	</div>		
 </div>
 	
@@ -383,35 +374,31 @@
 	<table>
 	<tr>
 		<td><div id="r_vlight"></div></td>
-		<td> Cost <div id="r_dev1_cost"></div> </td>
-		<td>Time <div id="r_dev1_time"></div> </td>
+		<td> Cost <div id="r_dev1_cost"></div>Time <div id="r_dev1_time"></div> </td>
 	</tr>
 	
 	<tr>
 		<td><div id="r_wlight"></div></td>
-		<td> Cost <div id="r_dev2_cost"></div> </td>
-		<td>Time <div id="r_dev2_time"></div></td>
+		<td> Cost <div id="r_dev2_cost"></div>Time <div id="r_dev2_time"></div></td>
 	</tr>
 	
 	<tr>
 		<td><div id="r_vents"></div></td>
-		<td> Cost <div>88.88</div> </td>
-		<td>Time <div>88:88</div> </td>
+		<td> Cost <div>88.88</div>Time <div>88:88</div> </td>
 	</tr>
 	
 	<tr>
 		<td><div id="r_geyser"></div></td>
-		<td> Cost <div>88.88</div> </td>
-		<td>Time <div>88:88</div></td>
+		<td> Cost <div>88.88</div>Time <div>88:88</div></td>
 	</tr>
 	</table>
 	</div>
 			
 	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
-	<div class="company-logo"></div>
-	<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
+		<div class="company-logo"></div>
+		<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
 	</div>		
 </div>
-	
+
 </body>	
 </html>
