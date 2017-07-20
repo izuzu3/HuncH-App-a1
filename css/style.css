@@ -85,6 +85,11 @@ h1, h2, h3, h4, h5, h6{
 	padding: 10px 0;
 }
 
+#footer-container{
+	position: fixed;
+	
+}
+
 .menu-text{
 	text-align: center;
 	padding: 0;
