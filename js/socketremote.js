@@ -50,7 +50,7 @@ function getCost(data){
 }
 /*------------ POWER STATUS -----------------*/	
 function loadPower(){
-	sock.send('LPT4');
+	sock.send('uLPT4');
 	sock.onmessage = function(e){
 		console.log("power" +e.data);
 		var power = e.data.split(",");
@@ -258,16 +258,16 @@ function k_powerstatus(str){
 function powerdata_check()
 {
 	if (lpstatus == 0){
-		sock.send("LPT4");
+		("uLPT4");
 	}
 	else if (bpstatus == 0){
-		sock.send("BPT4");
+		sock.send("uBPT4");
 	}
 	else if (rpstatus == 0){
-		sock.send("RPT4");
+		sock.send("uRPT4");
 	}
 	else if (kpstatus == 0){
-		sock.send("KPT4");
+		sock.send("uKPT4");
 	}
 }
 
@@ -286,7 +286,7 @@ function h_powerstatus(){
 
 function l_getstatus(){
 	if(sock){
-		sock.send("LST4");
+		sock.send("uLST4");
 	}else{
 		console.log("Socket Error");
 	}
@@ -332,7 +332,7 @@ function l_getstatus(){
 function b_getstatus(){
 	console.log("BedRoom");
 	if(sock){
-		sock.send("BST4");
+		sock.send("uBST4");
 	}else{
 		console.log("Socket Error");
 	}
@@ -374,7 +374,7 @@ function b_getstatus(){
 function k_getstatus(){
 	console.log("Kitchen");
 	if(sock){
-		sock.send("KST4");
+		sock.send("uKST4");
 	}else{
 		console.log("Socket Error");
 	}
@@ -415,7 +415,7 @@ function k_getstatus(){
 function r_getstatus(){
 	console.log("RestRoom");
 	if(sock){
-		sock.send("RST4");
+		sock.send("uRST4");
 	}else{
 		console.log("Socket Error");
 	}
@@ -510,9 +510,9 @@ function hunchres(state){
 	var msg = document.getElementById("l_pendt").name;
 	if (sock) {
 			if(l1status == 0){				
-				sock.send("L1T4");
+				sock.send("uL1T4");
 	}else{
-				sock.send("L1F4");
+				sock.send("uL1F4");
 	}
 	} else {
 	   alert("Not connected.");
@@ -529,9 +529,9 @@ function hunchres(state){
 	var msg = document.getElementById("l_wlight").name;
 	if (sock) {
 		if(l2status == 0){				
-			sock.send("L2T4");
+			sock.send("uL2T4");
 		}else{
-			sock.send("L2F4");
+			sock.send("uL2F4");
 		}
 	} else {
 	   alert("Not connected.");
@@ -548,9 +548,9 @@ function hunchres(state){
  function k1() { 
 	if (sock) {
 			if(k1status == 0){				
-				sock.send("K1T4");
+				sock.send("uK1T4");
 	}else{
-				sock.send("K1F4");
+				sock.send("uK1F4");
 	}
 	} else {
 	   alert("Not connected.");
@@ -566,9 +566,9 @@ function hunchres(state){
  function k2() {
 	if (sock) {
 		if(k2status == 0){				
-			sock.send("K2T4");
+			sock.send("uK2T4");
 		}else{
-			sock.send("K2F4");
+			sock.send("uK2F4");
 		}
 	} else {
 	   alert("Not connected.");
@@ -586,9 +586,9 @@ function b1() {
 	var msg = document.getElementById("b_tlight").name;
 	if (sock) {
 		if(b1status == 0){				
-			sock.send("B1T4");
+			sock.send("uB1T4");
 		}else{
-			sock.send("B1F4");
+			sock.send("uB1F4");
 		}
 	} else {
 	   alert("Not connected.");
@@ -605,9 +605,9 @@ function b1() {
 	var msg = document.getElementById("b_wlight").name;
 	if (sock) {
 		if(b2status == 0){				
-			sock.send("B2T4");
+			sock.send("uB2T4");
 		}else{
-			sock.send("B2F4");
+			sock.send("uB2F4");
 		}
 	} else {
 	   alert("Not connected.");
@@ -625,9 +625,9 @@ function r1() {
 	var msg = document.getElementById("r_vlight").name;
 	if (sock) {
 		if(r1status == 0){				
-			sock.send("R1T4");
+			sock.send("uR1T4");
 		}else{
-			sock.send("R1F4");
+			sock.send("uR1F4");
 		}
 	} else {
 	   alert("Not connected.");
@@ -644,9 +644,9 @@ function r1() {
 	var msg = document.getElementById("r_wlight").name;
 	if (sock) {
 		if(r2status == 0){				
-			sock.send("R2T4");
+			sock.send("uR2T4");
 		}else{
-			sock.send("R2F4");
+			sock.send("uR2F4");
 		}
 	} else {
 	   alert("Not connected.");
