@@ -1,659 +1,415 @@
-var sock=null;
-var myVar;
-var serverStatus = 0;
-var messagedata = null;
-var l1status = 0; var l2status = 0; var k1status = 0; var k2status = 0;
-var b1status = 0; var b2status = 0; var r1status = 0; var r2status = 0;
-var lpstatus=0; var bpstatus=0; var kpstatus=0; var rpstatus=0;
-var h_power = 0; var h_hours=0; 
+<!DOCTYPE html> 
+<html>
+<head>
 
-var ltpower; var lthours; var btpower; var bthours; var ktpower; var kthours; var rtpower; var rthours;
-
-var address = "ws://13.58.235.223:9101";
-var socket = new WebSocket(address);
-socket.onopen = function() {
-	if (socket) {
-		alert(address + " success");
-		document.getElementById('localAddress').innerHTML += address;
-		sock=socket;
-		serverStatus = 1;
-		l_getstatus();
-	}
-};
-socket.onerror = function(err) {
-	if (socket) {
-		console.log(address + " error");
-	}
-}
-
-function timeFormat(hours){
-	var temphours1 = parseFloat(hours).toFixed(2);
-	var temphours = temphours1.toString();
-	temphours = temphours.replace(".",":");
-	return temphours;
-}
-
-function getHours(data){
-	return ((data)/3600.00).toFixed(2);
-}
-
-function getMins(data){
-	return ((data)/60.00).toFixed(2);
-}
-
-function getWh(data){
-	return ((data)/1000.00).toFixed(2);
-}
-
-function getCost(data){
-	return ((data)*7).toFixed(2)	
-}
-/*------------ POWER STATUS -----------------*/	
-function loadPower(){
-	sock.send('uLPT4');
-	sock.onmessage = function(e){
-		console.log("power" +e.data);
-		var power = e.data.split(",");
-		console.log(power[0]);
-		
-		for(var i=0; i< power.length; i++){
-			console.log(power[i]);
-		}
-		
-		if (power[0] == "['l'"){
-			l_powerstatus(e.data);
-		}
-		else if (power[0] =="['b'"){
-			b_powerstatus(e.data);
-		}
-		else if (power[0] == "['k'"){
-			k_powerstatus(e.data);
-		}
-		else if (power[0] =="['r'"){
-			r_powerstatus(e.data);
-		}	
-		h_powerstatus()
-	}
-}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard</title>
 
 
-function l_powerstatus(str){	
-	console.log("l " + str);
-	var power = str.split(",");
+<link rel="stylesheet" href="jq/jquery.mobile-1.0.min.css">
+<script src="jq/jquery-1.6.4.min.js"></script>
+<script src="jq/jquery.mobile-1.0.min.js"></script>
 
-	var l_temp_str = power[4];
-	l_pwr_dev2 = l_temp_str.substring(0, l_temp_str.length - 1);
+<link rel="stylesheet" href="css/style.css">
+
+<script src="js/socketremote.js"></script>
+</head> 
+
+<body> 
+
+<div class="mobile mobile-four" data-role="page" id="Living-Room">
+	<div data-role="header">
+		<div class="remote-icon"></div>
+		<p class="menu-text">Living Room</p>  
+		<div class="dropdown">
+			<div id="icon-arrow-down" class="dropbtn"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>
+			<div class="dropdown-content">
+				<a href="#Kitchen" onclick="k_getstatus()"><p>Kitchen</p></a>
+				<a href="#Bed-Room" onclick="b_getstatus()"><p>Bed Room</p></a>
+				<a href="#Bath-Room" onclick="r_getstatus()"><p>Bathroom</p></a>
+			</div>
+		</div>	
+	  </li>
+	</div>
+		  	
+	<div data-role="content">
+		<div class="btn-container">
+		<table>
+		<tr>
+			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="l_pendt"  onclick='l1();'></a></td>
+			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="l_wlight" onclick='l2();'></a></td>					
+		</tr>
+		<tr>
+			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="l_fan" onclick='broadcast;'></a></td>
+			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="l_tmpctrl" onclick='broadcast();'></a></td>
+		</tr>
+		</table>
+		</div>
+	</div>
 	
-	var l_time_dev1= power[1];
-	var l_time_dev2 = power[2];
-	var l_pwr_dev1= power[3];
+	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
+		<div class="company-logo"></div>
+		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
+	</div>
+</div>
 
-	var l_hour_dev1 = getHours(l_time_dev1);
-	var l_mins_dev1 = getMins(l_hour_dev1);
-	var l_wh_dev1 = getWh(l_pwr_dev1);
-	var l_cost_dev1 = getCost(l_wh_dev1);
-	
-	var l_hour_dev2 = getHours(l_time_dev2);
-	var l_mins_dev2 = getMins(l_time_dev2);
-	var l_wh_dev2 = getWh(l_pwr_dev2);
-	var l_cost_dev2 = getCost(l_wh_dev2);
-	
-	var l_hours = parseFloat(l_hour_dev1) + parseFloat(l_hour_dev2);
-	var l_power = parseFloat(l_wh_dev1) + parseFloat(l_wh_dev2);
-
-	ltpower = (l_power);
-	lthours = (l_hours);
-	/*
-	h_hours = h_hours + parseFloat(l_hours);
-	h_power = h_power + parseFloat(l_power);
-
-	*/
-	document.getElementById('l_hour').innerHTML = timeFormat(l_hours);
-	document.getElementById('l_pwr').innerHTML = l_power.toFixed(2);		
-
-	document.getElementById('l_dev1_cost').innerHTML = l_cost_dev1;
-	document.getElementById('l_dev1_time').innerHTML = timeFormat(l_hour_dev1);
-
-	document.getElementById('l_dev2_cost').innerHTML = l_cost_dev2;
-	document.getElementById('l_dev2_time').innerHTML = timeFormat(l_hour_dev2);		
-
-	lpstatus =1;
-	powerdata_check();
-}
-
-function b_powerstatus(str){
-	
-	console.log("b " + str);
-	var power = str.split(",");
-
-	var b_temp_str = power[4];
-	b_pwr_dev2 = b_temp_str.substring(0, b_temp_str.length - 1);
-	
-	var b_time_dev1= power[1];
-	var b_time_dev2 = power[2];
-	var b_pwr_dev1= power[3];
-
-	var b_hour_dev1 = getHours(b_time_dev1);
-	var b_mins_dev1 = getMins(b_hour_dev1);
-	var b_wh_dev1 = getWh(b_pwr_dev1);
-	var b_cost_dev1 = getCost(b_wh_dev1);
-
-	var b_hour_dev2 = getHours(b_time_dev2);
-	var b_mins_dev2 = getMins(b_hour_dev2);
-	var b_wh_dev2 = getWh(b_pwr_dev2);
-	var b_cost_dev2 = getCost(b_wh_dev2);
-
-	var b_hours = parseFloat(b_hour_dev1) + parseFloat(b_hour_dev2);
-	var b_power = parseFloat(b_wh_dev1) + parseFloat(b_wh_dev2);
-	
-	
-	btpower = parseFloat(b_power);
-	bthours = parseFloat(b_hours);
-	/*
-	h_hours = h_hours + parseFloat(b_hours);
-	h_power = h_power + parseFloat(b_power);
-	*/
-	document.getElementById('b_hour').innerHTML = timeFormat(b_hours);
-	document.getElementById('b_pwr').innerHTML = b_power.toFixed(2);		
-
-	document.getElementById('b_dev1_cost').innerHTML = b_cost_dev1;
-	document.getElementById('b_dev1_time').innerHTML = timeFormat(b_hour_dev1);
-
-	document.getElementById('b_dev2_cost').innerHTML = b_cost_dev2;
-	document.getElementById('b_dev2_time').innerHTML = timeFormat(b_hour_dev2);		
-
-	bpstatus = 1;
-	powerdata_check();
-}
-
-function r_powerstatus(str){
-	
-	console.log("r " + str);
-	var power = str.split(",");
-
-	var r_temp_str = power[4];
-	r_pwr_dev2 = r_temp_str.substring(0, r_temp_str.length - 1);
-	
-	var r_time_dev1= power[1];
-	var r_time_dev2 = power[2];
-	var r_pwr_dev1= power[3];
-
-	var r_hour_dev1 = getHours(r_time_dev1);
-	var r_mins_dev1 = getMins(r_mins_dev1);
-	var r_wh_dev1 = getWh(r_pwr_dev1);
-	var r_cost_dev1 = getCost(r_wh_dev1);
-
-	var r_hour_dev2 = getHours(r_time_dev2);
-	var r_mins_dev2 = getMins(r_time_dev2);
-	var r_wh_dev2 = getWh(r_pwr_dev2);
-	var r_cost_dev2 = getCost(r_wh_dev2);
-
-	var r_hours = parseFloat(r_hour_dev1) + parseFloat(r_hour_dev2);
-	var r_power = parseFloat(r_wh_dev1) + parseFloat(r_wh_dev2);
-
-	rtpower = parseFloat(r_power);
-	rthours = parseFloat(r_hours);
-	/*
-	h_hours = h_hours + parseFloat(r_hours);
-	h_power = h_power + parseFloat(r_power);
-	*/
-	document.getElementById('r_hour').innerHTML = timeFormat(r_hours);
-	document.getElementById('r_pwr').innerHTML = r_power.toFixed(2);		
-
-	document.getElementById('r_dev1_cost').innerHTML = r_cost_dev1;
-	document.getElementById('r_dev1_time').innerHTML = timeFormat(r_hour_dev1);
-
-	document.getElementById('r_dev2_cost').innerHTML = r_cost_dev2;
-	document.getElementById('r_dev2_time').innerHTML = timeFormat(r_hour_dev2);		
-	
-	rpstatus = 1;
-	powerdata_check();
-}
-
-function k_powerstatus(str){
-	
-	console.log("k " + str);
-	var power = str.split(",");
-
-	var k_temp_str = power[4];
-	k_pwr_dev2 = k_temp_str.substring(0, k_temp_str.length - 1);
-	
-	var k_time_dev1= power[1];
-	var k_time_dev2 = power[2];
-	var k_pwr_dev1= power[3];
-
-	var k_hour_dev1 = getHours(k_time_dev1);
-	var k_mins_dev1 = getMins(k_time_dev1);
-	var k_wh_dev1 = getWh(k_pwr_dev1);
-	var k_cost_dev1 = getCost(k_wh_dev1);
-
-	var k_hour_dev2 = getHours(k_time_dev2);
-	var k_mins_dev2 = getMins(k_time_dev2);
-	var k_wh_dev2 = getWh(k_pwr_dev2);
-	var k_cost_dev2 = getCost(k_wh_dev2);
-	
-	var k_hours = parseFloat(k_hour_dev1) + parseFloat(k_hour_dev2);
-	var k_power = parseFloat(k_wh_dev1) + parseFloat(k_wh_dev2);
-			
-	document.getElementById('k_hour').innerHTML = timeFormat(k_hours);
-	document.getElementById('k_pwr').innerHTML = k_power.toFixed(2);		
-	
-	
-	ktpower = parseFloat(k_power);
-	kthours = parseFloat(k_hours);
-	/*
-	h_hours = h_hours + parseFloat(k_hours);
-	h_power = h_power + parseFloat(k_power);
-	*/
-	document.getElementById('k_dev1_cost').innerHTML = k_cost_dev1;
-	document.getElementById('k_dev1_time').innerHTML = timeFormat(k_hour_dev1);
-
-	document.getElementById('k_dev2_cost').innerHTML = k_cost_dev2;
-	document.getElementById('k_dev2_time').innerHTML = timeFormat(k_hour_dev2);		
-
-	kpstatus =1;
-	powerdata_check();
-}
-
-function powerdata_check()
-{
-	if (lpstatus == 0){
-		("uLPT4");
-	}
-	else if (bpstatus == 0){
-		sock.send("uBPT4");
-	}
-	else if (rpstatus == 0){
-		sock.send("uRPT4");
-	}
-	else if (kpstatus == 0){
-		sock.send("uKPT4");
-	}
-}
-
-function h_powerstatus(){
-	console.log("home");
-	h_hours = lthours + bthours + rthours + kthours;
-	h_power = ltpower + btpower + rtpower + ktpower;
-	document.getElementById('h_hour').innerHTML = timeFormat(h_hours);
-	document.getElementById('h_pwr').innerHTML = h_power.toFixed(2);		
-	hpstatus =1;
-}
-
-
-/*----------- INITIAL STATUS -------------------------*/
-
-
-function l_getstatus(){
-	if(sock){
-		sock.send("uLST4");
-	}else{
-		console.log("Socket Error");
-	}
-	
-	sock.onmessage = function(e) {
-		console.log("l " + e.data);
-		var array = e.data.split("'");
-		console.log('working')
-		console.log(array[1]);
-		console.log(array[3]);
-		
-		if (e.data[0] == '[')
-		{
-			console.log('it is status');
-			if(array[1] == 'F'){
-			document.getElementById("l_pendt").style.backgroundImage = 'url("icons/Button-Pendant.png")';	
-		    }
-			else if(array[1] == 'T'){
-			document.getElementById("l_pendt").style.backgroundImage = 'url("icons/Button-Pendant-Active.png")';
-			l1status = 1;
-			}
-		
-		
-		if(array[3] == 'F'){
-			document.getElementById("l_wlight").style.backgroundImage = 'url("icons/Button-Wall.png")';
-			}
-		else{
-			document.getElementById("l_wlight").style.backgroundImage = 'url("icons/Button-Wall-Active.png")';
-			l2status = 1;
-		}
-		}
-		
-		
-		if (e.data[0] != '['){
-			console.log('it is present data');
-			hunchres(e.data);
-		}
-	}
-};
-
-
-
-function b_getstatus(){
-	console.log("BedRoom");
-	if(sock){
-		sock.send("uBST4");
-	}else{
-		console.log("Socket Error");
-	}
-	
-	sock.onmessage = function(e) {
-		console.log("B " + e.data);
-		var array = e.data.split("'");
-		
-		console.log(array[1]);
-		console.log(array[3]);
-		
-		
-		if (e.data[0] == '[')
-		{
-			if(array[1] == 'F'){
-			document.getElementById("b_tlight").style.backgroundImage = 'url("icons/Button-TableLight.png")';
-			}else if(array[1] == 'T'){
-			document.getElementById("b_tlight").style.backgroundImage = 'url("icons/Button-TableLight-Active.png")';
-			b1status = 1;
-			}	
-		
-
-			if(array[3] == 'F'){
-			document.getElementById("b_wlight").style.backgroundImage = 'url("icons/Button-Wall.png")';
-			}else{
-			document.getElementById("b_wlight").style.backgroundImage = 'url("icons/Button-Wall-Active.png")';
-			b2status = 1;
-			}
-		}
-		
-		if (e.data[0] != '['){
-			console.log('it is present data');
-			hunchres(e.data);
-		}
-	}
-};
-
-
-function k_getstatus(){
-	console.log("Kitchen");
-	if(sock){
-		sock.send("uKST4");
-	}else{
-		console.log("Socket Error");
-	}
-	
-	sock.onmessage = function(e) {
-		console.log("K " + e.data);
-		var array = e.data.split("'");
-		
-		console.log(array[1]);
-		console.log(array[3]);
-		
-		if (e.data[0] == '['){
-			if(array[1] == 'F'){
-				document.getElementById("k_pendt").style.backgroundImage = 'url("icons/Button-Pendant.png")';	
-			}else if(array[1] == 'T'){
-				document.getElementById("k_pendt").style.backgroundImage = 'url("icons/Button-Pendant-Active.png")';
-				l1status = 1;
-			}
-			
-			
-			if(array[3] == 'F'){
-				document.getElementById("k_wlight").style.backgroundImage = 'url("icons/Button-Wall.png")';
-			}else{
-				document.getElementById("k_wlight").style.backgroundImage = 'url("icons/Button-Wall-Active.png")';
-				l2status = 1;
-			}
-		}
-		
-		if (e.data[0] != '['){
-			console.log('it is present data');
-			hunchres(e.data);
-		}
-	}
-};
-
-
-
-function r_getstatus(){
-	console.log("RestRoom");
-	if(sock){
-		sock.send("uRST4");
-	}else{
-		console.log("Socket Error");
-	}
-	
-	sock.onmessage = function(e) {
-		console.log("B " + e.data);
-		var array = e.data.split("'");
-		
-		console.log(array[1]);
-		console.log(array[3]);
-		
-		if (e.data[0] == '['){		
-			if(array[1] == 'F'){
-				document.getElementById("r_vlight").style.backgroundImage = 'url("icons/Button-VanityLight.png")';
-			}else if(array[1] == 'T'){
-				document.getElementById("r_vlight").style.backgroundImage = 'url("icons/Button-VanityLight-Active.png")';
-				r1status = 1;
-			}
-			
-			
-			if(array[3] == 'F'){
-				document.getElementById("r_wlight").style.backgroundImage = 'url("icons/Button-Wall.png")';
-			}else{
-				document.getElementById("r_wlight").style.backgroundImage = 'url("icons/Button-Wall-Active.png")';
-				r2status = 1;
-			}
-		}
-		
-		if (e.data[0] != '['){
-			console.log('it is present data');
-			hunchres(e.data);
-		}
-	}
-};
-
-
-/*---------- HUNCH OPERATING FUNCTIONS ----------------------------*/
-function hunchres(state){
-	if(messagedata =="L1T4U" || state == "L1T4U"){
-				l1status=1;
-				document.getElementById("l_pendt").style.backgroundImage = 'url("icons/Button-Pendant-Active.png")';
-	}else if(messagedata == "L1F4U" || state == "L1F4U"){
-				l1status=0;
-				document.getElementById("l_pendt").style.backgroundImage = 'url("icons/Button-Pendant.png")';	
-	}else if(messagedata=="L2T4U" || state == "L2T4U"){
-				document.getElementById("l_wlight").style.backgroundImage = 'url("icons/Button-Wall-Active.png")';
-				l2status=1;
-	}else if(messagedata == "L2F4U" || state == "L2F4U"){
-				document.getElementById("l_wlight").style.backgroundImage = 'url("icons/Button-Wall.png")';
-				l2status=0;
-	}else if(messagedata =="K1T4U" || state == "K1T4U"){
-				k1status=1;
-				document.getElementById("k_pendt").style.backgroundImage = 'url("icons/Button-Pendant-Active.png")';
-	}else if(messagedata == "K1F4U" || state == "K1F4U"){
-				k1status=0;
-				document.getElementById("k_pendt").style.backgroundImage = 'url("icons/Button-Pendant.png")';	
-	}else if(messagedata=="K2T4U" || state == "K2T4U"){
-				document.getElementById("k_wlight").style.backgroundImage = 'url("icons/Button-Wall-Active.png")';
-				k2status=1;
-	}else if(messagedata == "K2F4U" || state == "K2F4U"){
-				document.getElementById("k_wlight").style.backgroundImage = 'url("icons/Button-Wall.png")';
-				k2status=0;
-	}	else if(messagedata=="B1T4U" || state == "B1T4U"){
-			b1status=1;
-			document.getElementById("b_tlight").style.backgroundImage = 'url("icons/Button-TableLight-Active.png")';
-	}else if(messagedata== "B1F4U" || state == "B1F4U"){
-			b1status=0;
-			document.getElementById("b_tlight").style.backgroundImage = 'url("icons/Button-TableLight.png")';	
-	}else if(messagedata=="B2T4U" || state == "B2T4U"){
-			document.getElementById("b_wlight").style.backgroundImage = 'url("icons/Button-Wall-Active.png")';
-			b2status=1;
-	}else if(messagedata== "B2F4U" || state == "B2F4U"){
-			document.getElementById("b_wlight").style.backgroundImage = 'url("icons/Button-Wall.png")';
-			b2status=0;
-	}else if(messagedata=="R1T4U" || state == "R1T4U"){
-			r1status=1;
-			document.getElementById("r_vlight").style.backgroundImage = 'url("icons/Button-VanityLight-Active.png")';
-	}else if(messagedata== "R1F4U" || state == "R1F4U"){
-			r1status=0;
-			document.getElementById("r_vlight").style.backgroundImage = 'url("icons/Button-VanityLight.png")';	
-	}else if(messagedata=="R2T4U" || state == "R2T4U"){
-			document.getElementById("r_wlight").style.backgroundImage = 'url("icons/Button-Wall-Active.png")';
-			r2status=1;
-	}else if(messagedata== "R2F4U" || state == "R2F4U"){
-			document.getElementById("r_wlight").style.backgroundImage = 'url("icons/Button-Wall.png")';
-			r2status=0;
-	}	
-}	
-
-/*----- LIVING ROOM ------*/
- function l1() { 
-	var msg = document.getElementById("l_pendt").name;
-	if (sock) {
-			if(l1status == 0){				
-				sock.send("uL1T4");
-	}else{
-				sock.send("uL1F4");
-	}
-	} else {
-	   alert("Not connected.");
-	}
-	
-	
-	sock.onmessage = function(e) {
-		messagedata = e.data;
-		hunchres();
-	}
-};
-
- function l2() {
-	var msg = document.getElementById("l_wlight").name;
-	if (sock) {
-		if(l2status == 0){				
-			sock.send("uL2T4");
-		}else{
-			sock.send("uL2F4");
-		}
-	} else {
-	   alert("Not connected.");
-	}
-	
-	
-	sock.onmessage = function(e) {
-		messagedata = e.data;
-		hunchres();
-	}
- };
-
-/*----- KITCHEN ------*/
- function k1() { 
-	if (sock) {
-			if(k1status == 0){				
-				sock.send("uK1T4");
-	}else{
-				sock.send("uK1F4");
-	}
-	} else {
-	   alert("Not connected.");
-	}
-	
-	
-	sock.onmessage = function(e) {
-		messagedata = e.data;
-		hunchres();
-	}
-};
-
- function k2() {
-	if (sock) {
-		if(k2status == 0){				
-			sock.send("uK2T4");
-		}else{
-			sock.send("uK2F4");
-		}
-	} else {
-	   alert("Not connected.");
-	}
-	
-	
-	sock.onmessage = function(e) {
-		messagedata = e.data;
-		hunchres();
-	}
- };
- 
-/*-------- BedRoom-----------*/
-function b1() {
-	var msg = document.getElementById("b_tlight").name;
-	if (sock) {
-		if(b1status == 0){				
-			sock.send("uB1T4");
-		}else{
-			sock.send("uB1F4");
-		}
-	} else {
-	   alert("Not connected.");
-	}
-	
-	sock.onmessage = function(e) {
-		messagedata = e.data;
-		hunchres();
-	}
- };
-	
-	
- function b2() {
-	var msg = document.getElementById("b_wlight").name;
-	if (sock) {
-		if(b2status == 0){				
-			sock.send("uB2T4");
-		}else{
-			sock.send("uB2F4");
-		}
-	} else {
-	   alert("Not connected.");
-	}
-	
-	sock.onmessage = function(e) {
-		messagedata = e.data;
-		hunchres();
-	} 
-};
+<div class="mobile mobile-four" data-role="page" id="Kitchen">
+	<div data-role="header">
+		<div class="remote-icon"></div>
+		<p class="menu-text">Kitchen</p>  
+		<div class="dropdown">
+			<div id="icon-arrow-down" class="dropbtn"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>
+			<div class="dropdown-content">
+				<a href="#Living-Room" onclick="l_getstatus()"><p>Living Room</p></a>
+				<a href="#Bed-Room" onclick="b_getstatus()"><p>Bed Room</p></a>
+				<a href="#Bath-Room" onclick="r_getstatus()"><p>Bathroom</p></a>
+			</div>
+		</div>	
+	  </li>
+	</div>
+				
+	<div data-role="content">
+		<div class="btn-container">
+		<table>
+		<tr>
+			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="k_pendt" onclick="k1()"></a></td>
+			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="k_wlight" onclick="k2()"></a></td>
+		</tr>
+		<tr>
+			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="k_fan"></a></td>
+			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="k_vents"></a></td>
+		</tr>
+		</table>
+		</div>
+	</div>
   
-   
-/*-------- Rest Room--------*/
-function r1() {
-	var msg = document.getElementById("r_vlight").name;
-	if (sock) {
-		if(r1status == 0){				
-			sock.send("uR1T4");
-		}else{
-			sock.send("uR1F4");
-		}
-	} else {
-	   alert("Not connected.");
-	}
+	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
+		<div class="company-logo"></div>
+		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
+	</div>
+</div>
+
+
+<div class="mobile mobile-four" data-role="page" id="Bed-Room">
+	<div data-role="header">
+	<div class="remote-icon"></div>
+		<p class="menu-text">Bed Room</p>  
+		<div class="dropdown">
+			<div id="icon-arrow-down" class="dropbtn"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>
+			<div class="dropdown-content">
+				<a href="#Living-Room" onclick="l_getstatus()"><p>Living Room</p></a>
+				<a href="#Bed-Room" onclick="k_getstatus()"><p>Kitchen</p></a>
+				<a href="#Bath-Room" onclick="r_getstatus()"><p>Bathroom</p></a>
+			</div>
+		</div>	
+	  </li>
+	</div>
+
+	<div data-role="content">
+		<div class="btn-container">
+		<table>
+		<tr>
+			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" name="B1T4" id="b_tlight" onclick='b1()'></a></td>
+			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" name= "B2T4"id="b_wlight" onclick='b2()' ></a></td>
+		</tr>
+		<tr>
+			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="b_fan"></a></td>
+			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="b_tmpctrl"></a></td>
+		</tr>
+		</table>
+		</div>
+	</div>
+
+	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
+		<div class="company-logo"></div>
+		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
+	</div>
+</div>
+
+<div class="mobile mobile-four" data-role="page" id="Bath-Room">
+	<div data-role="header">
+	<div class="remote-icon"></div>
+		<p class="menu-text">Bath Room</p>  
+		<div class="dropdown">
+			<div id="icon-arrow-down" class="dropbtn"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>
+			<div class="dropdown-content">
+				<a href="#Living-Room" onclick="l_getstatus()"><p>Living Room</p></a>
+				<a href="#Bed-Room" onclick="b_getstatus()"><p>Bed Room</p></a>
+				<a href="#Bath-Room" onclick="k_getstatus()"><p>Kitchen</p></a>
+			</div>
+		</div>	
+	  </li>
+	</div>
 	
-	sock.onmessage = function(e) {
-		messagedata = e.data;
-		hunchres();
-	} 
- };
+	<div data-role="content">
+		<div class="btn-container">
+		<table>
+		<tr>
+			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" name="R1T4" id="r_vlight" onclick="r1()"></a></td>
+			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" name="R2T4" id="r_wlight" onclick="r2()"></a></td>
+		</tr>
+		<tr>
+			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="r_geyser"></a></td>
+			<td><a data-role="button" href="#" data-shadow="false" data-theme="none" id="r_vents"></a></td>
+		</tr>
+		</table>
+		</div>
+	</div>
+		
+	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
+		<div class="company-logo"></div>
+		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
+	</div>
+</div>
+
+<div class="mobile mobile-four" data-role="page" id="setting-page">		
+	<div data-role="header">
+	<div class="remote-icon"></div>
+		<p class="menu-text">Setting</p>  
+		<div class="dropdown">
+			<div id="icon-arrow-down" class="dropbtn"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>
+			<div class="dropdown-content">
+				<a href="#Living-Room" onclick="l_getstatus()"><p>Living Room</p></a>
+				<a href="#Bed-Room" onclick="b_getstatus()"><p>Bed Room</p></a>
+				<a href="#Bath-Room" onclick="r_getstatus()"><p>Bathroom</p></a>
+				<a href="#Bath-Room" onclick="k_getstatus()"><p>Kitchen</p></a>
+			</div>
+		</div>	
+	</div>
 	
+	<div data-role="content" class="ShowInfoModule">
+		<p> Hunch Name: </p>
+		<p> Connected Locally To: <div id="localAddress"></div> </p>
+	</div>
+
+	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container2">
+		<div class="company-logo"></div>
+		<div class="back-icon" onclick="location.href='#Living-Room';"></div>
+		<div class="power-icon" onclick="location.href='#Power-page'; loadPower();"></div>
+	</div>
+</div>
 	
- function r2() {
-	var msg = document.getElementById("r_wlight").name;
-	if (sock) {
-		if(r2status == 0){				
-			sock.send("uR2T4");
-		}else{
-			sock.send("uR2F4");
-		}
-	} else {
-	   alert("Not connected.");
-	}
+<div class="mobile mobile-four" data-role="page" id="Power-page">
+	<div data-role="header">
+	<div class="remote-icon"></div>
+		<div class="menu-toggle">
+		   <p class="menu-text">Power</p>
+		</div>
+	</div>
 	
-	sock.onmessage = function(e) {
-		messagedata = e.data;
-		hunchres();
-	} 
- };
+	<div data-role="content" class="PowerModule">
+	<table>
+	<tr>
+		<td><a data-role="button" data-theme="none"  id="Home-Icon"></a></td>
+		<td>Units: </td>
+		<td><div id="h_pwr"></div></td>
+		<td>Time: </td>
+		<td><div id="h_hour"></div></td>
+	</tr>
+	
+	<tr>
+		<td><a data-role="button" data-theme="none" href="#Living-Power" id="Living-Icon" onclick="l_powerstatus()"></a></td>
+		<td>Units: </td>
+		<td><div id="l_pwr"></div></td>
+		<td>Time: </td>
+		<td><div id="l_hour"></div></td>
+	</tr>
+	<tr>
+		<td><a data-role="button" data-theme="none" href="#Kitchen-Power" id="Kitchen-Icon" onclick="k_powerstatus()"></a></td>
+		<td>Units: </td>
+		<td><div id="k_pwr"></div> </td>
+		<td>Time: </td>
+		<td><div id="k_hour"></div></td>   
+	</tr>
+	<tr>
+		<td><a data-role="button" data-theme="none" href="#Bed-Power" id="Bed-Icon" onclick="b_powerstatus()"></a></td>
+		<td>Units: </td>
+		<td><div id="b_pwr"></div> </td>
+		<td>Time: </td>
+		<td><div id="b_hour"></div>  </td>
+	</tr>
+	<tr>
+		<td><a data-role="button" data-theme="none" href="#Rest-Power" id="Rest-Icon" onclick="r_powerstatus()"></a></td> 
+		<td> Units: </td>
+		<td><div id="r_pwr"></div> </td>
+		<td>Time: </td>
+		<td><div id="r_hour"></div></td>
+	</tr>
+	</table>
+	</div>
+	
+	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
+		<div class="company-logo"></div>
+		<div class="setting-icon" onclick="location.href='#setting-page';"></div>
+	</div>
+</div>
+	
+<div class="mobile mobile-four" data-role="page" id="Living-Power">
+	<div data-role="header">
+	<div class="remote-icon"></div>
+		<div class="menu-toggle">
+		   <p class="menu-text">Living Room Power</p>
+		</div>
+	</div>
+
+	<div data-role="content" class="LivingPowerModule">
+	<table>
+	<tr>
+		<td><div id="l_pendt"></div></td>
+		<td> Cost </td> <td><div id="l_dev1_cost"></div></td>
+		<td>Time  </td> <td><div id="l_dev1_time"></div></td>
+	</tr>
+	<tr>
+		<td><div id="l_wlight"></div></td>
+		<td> Cost </td><td><div id="l_dev2_cost"></div></td>
+		<td>Time </td><td><div id="l_dev2_time"></div></td>
+	</tr>
+	<tr>
+		<td><div id="l_fan"></div></td>
+		<td> Cost </td><td><div>88.88</div></td>
+		<td>Time </td><td><div>88:88</div> </td>
+	</tr>
+	<tr>
+		<td><div id="l_tmpctrl"></div></td>
+		<td> Cost </td><td><div>88.88</div></td>
+		<td>Time </td><td><div>88:88</div> </td>
+	</tr>
+	</table>
+	</div>
+	
+	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
+		<div class="company-logo"></div>
+		<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
+	</div>		
+</div>
+	
+<div class="mobile mobile-four" data-role="page" id="Bed-Power">
+	<div data-role="header">
+	<div class="remote-icon"></div>
+		<div class="menu-toggle">
+		   <p class="menu-text">Bed Room Power</p>
+		   <div id="icon-arrow-down"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>		
+		</div>
+	</div>
+
+	<div data-role="content" class="BedPowerModule">
+	<table>
+	<tr>
+		<td><div id="b_tlight"></div></td>
+		<td> Cost </td><td><div id="b_dev1_cost"></div></td>
+		<td>Time </td><td><div id="b_dev1_time"></div> </td>
+	</tr>
+	
+	<tr>
+		<td><div id="b_wlight"></div></td>
+		<td> Cost </td><td><div id="b_dev2_cost"></div></td>
+		<td>Time </td><td><div id="b_dev2_time"></div></td>
+	</tr>
+	<tr>
+		<td><div id="b_fan"></div></td>
+		<td> Cost </td><td><div>88.88</div></td>
+		<td>Time </td><td><div>88:88</div> </td>
+	</tr>
+	
+	<tr>
+		<td><div id="b_tmpctrl"></div></td>
+		<td> Cost </td><td><div>88.88</div></td>
+		<td>Time </td><td><div>88:88</div></td>
+	</tr>
+	</table>
+	</div>
+			
+	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
+		<div class="company-logo"></div>
+		<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
+	</div>		
+</div>
+
+<div class="mobile mobile-four" data-role="page" id="Kitchen-Power">
+	<div data-role="header">
+	<div class="remote-icon"></div>
+		<div class="menu-toggle">
+		   <p class="menu-text">Kitchen Power</p>
+		   <div id="icon-arrow-down"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>							
+		</div>
+	</div>
+
+	<div data-role="content" class="KitchenPowerModule">
+	<table>
+	<tr>
+		<td><div id="k_pendt"></div></td>
+		<td> Cost </td><td><div id="k_dev1_cost"></div></td>
+		<td>Time </td><td><div id="k_dev1_time"></div> </td>
+	</tr>
+	
+	<tr>
+		<td><div id="k_wlight"></div></td>
+		<td> Cost </td><td><div id="k_dev2_cost"></div></td>
+		<td>Time </td><td><div id="k_dev2_time"></div></td>
+	</tr>
+	
+	<tr>
+		<td><div id="k_fan"></div></td>
+		<td> Cost </td><td><div>88.88</div></td>
+		<td>Time </td><td><div>88:88</div> </td>
+	</tr>
+	
+	<tr>
+		<td><div id="k_vents"></div></td>
+		<td> Cost </td><td><div>88.88</div></td>
+		<td>Time </td><td><div>88:88</div></td>
+	</tr>
+	</table>
+	</div>
+			
+	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
+		<div class="company-logo"></div>
+		<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
+	</div>		
+</div>
+	
+<div class="mobile mobile-four" data-role="page" id="Rest-Power">
+	<div data-role="header">
+	<div class="remote-icon"></div>
+	<div class="menu-toggle">
+	   <p class="menu-text">Rest Room Power</p>
+	   <div id="icon-arrow-down"><img src="icons/icon-arrow-down.png" alt="" width="20" height="20" border="0"/></div>							
+	</div>
+	</div>
+
+	<div data-role="content" class="RestPowerModule">
+	<table>
+	<tr>
+		<td><div id="r_vlight"></div></td>
+		<td> Cost </td><td><div id="r_dev1_cost"></div></td>
+		<td>Time </td><td><div id="r_dev1_time"></div> </td>
+	</tr>
+	
+	<tr>
+		<td><div id="r_wlight"></div></td>
+		<td> Cost </td><td><div id="r_dev2_cost"></div></td>
+		<td>Time </td><td><div id="r_dev2_time"></div></td>
+	</tr>
+	
+	<tr>
+		<td><div id="r_vents"></div></td>
+		<td> Cost </td><td><div>88.88</div></td>
+		<td>Time </td><td><div>88:88</div> </td>
+	</tr>
+	
+	<tr>
+		<td><div id="r_geyser"></div></td>
+		<td> Cost </td><td><div>88.88</div></td>
+		<td>Time </td><td><div>88:88</div></td>
+	</tr>
+	</table>
+	</div>
+			
+	<div class="Hunch-footer" data-role="footer" data-position="fixed" id="footer-container">
+		<div class="company-logo"></div>
+		<div class="back-icon" onclick="location.href='#Power-page'; loadPower();"></div>
+	</div>		
+</div>
+
+</body>	
+</html>
