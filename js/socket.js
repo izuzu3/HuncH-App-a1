@@ -58,7 +58,7 @@ function findServers(port, ipBase, ipLow, ipHigh, maxInFlight, timeout, cb) {
 }
 
 window.onload = function() {  
-	findServers(9700, "192.168.1.", 1, 20, 255, 4000, function(servers) {
+	findServers(9700, "192.168.1.", 1, 255, 255, 4000, function(servers) {
 		if(serverStatus == 0){
 			alert("Switching to Remote");
 			window.location.replace("remote.html");
