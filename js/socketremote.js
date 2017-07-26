@@ -59,13 +59,7 @@ function getCost(data){
 function loadPower(){
 	sock.send('uLPT4');
 	sock.onmessage = function(e){ //the websocket responses are caughts using sock.onmessage()
-		console.log("power" +e.data);
 		var power = e.data.split(",");
-		console.log(power[0]);
-		
-		for(var i=0; i< power.length; i++){
-			console.log(power[i]);
-		}
 		
 		if (power[0] == "['l'"){
 			l_powerstatus(e.data);
@@ -85,7 +79,6 @@ function loadPower(){
 
 
 function l_powerstatus(str){	
-	console.log("l " + str);
 	var power = str.split(",");
 
 	var l_temp_str = power[4];
@@ -125,8 +118,6 @@ function l_powerstatus(str){
 }
 
 function b_powerstatus(str){
-	
-	console.log("b " + str);
 	var power = str.split(",");
 
 	var b_temp_str = power[4];
@@ -167,8 +158,6 @@ function b_powerstatus(str){
 }
 
 function r_powerstatus(str){
-	
-	console.log("r " + str);
 	var power = str.split(",");
 
 	var r_temp_str = power[4];
@@ -208,8 +197,6 @@ function r_powerstatus(str){
 }
 
 function k_powerstatus(str){
-	
-	console.log("k " + str);
 	var power = str.split(",");
 
 	var k_temp_str = power[4];
@@ -273,7 +260,6 @@ function powerdata_check()
 //values obtained to generate the power and billing
 //status of entire home.
 function h_powerstatus(){
-	console.log("home");
 	h_hours = lthours + bthours + rthours + kthours;
 	h_power = ltpower + btpower + rtpower + ktpower;
 	document.getElementById('h_hour').innerHTML = timeFormat(h_hours);
@@ -285,20 +271,13 @@ function h_powerstatus(){
 function l_getstatus(){
 	if(sock){
 		sock.send("uLST4");
-	}else{
-		console.log("Socket Error");
 	}
 	
 	sock.onmessage = function(e) {
-		console.log("l " + e.data);
 		var array = e.data.split("'"); // Used to split the sock.onmessage() obtained to get power and hour status.
-		console.log('working')
-		console.log(array[1]);
-		console.log(array[3]);
 		
 		if (e.data[0] == '[')
 		{
-			console.log('it is status');
 			if(array[1] == 'F'){
 			document.getElementById("l_pendt").style.backgroundImage = 'url("icons/Button-Pendant.png")';	
 		    }
@@ -319,27 +298,17 @@ function l_getstatus(){
 		
 		
 		if (e.data[0] != '['){
-			console.log('it is present data');
 			hunchres(e.data);
 		}
 	}
 };
 
 function b_getstatus(){
-	console.log("BedRoom");
 	if(sock){
 		sock.send("uBST4");
-	}else{
-		console.log("Socket Error");
 	}
-	
 	sock.onmessage = function(e) {
-		console.log("B " + e.data);
-		var array = e.data.split("'");
-		
-		console.log(array[1]);
-		console.log(array[3]);
-		
+		var array = e.data.split("'");	
 		
 		if (e.data[0] == '[')
 		{
@@ -360,26 +329,18 @@ function b_getstatus(){
 		}
 		
 		if (e.data[0] != '['){
-			console.log('it is present data');
 			hunchres(e.data);
 		}
 	}
 };
 
 function k_getstatus(){
-	console.log("Kitchen");
 	if(sock){
 		sock.send("uKST4");
-	}else{
-		console.log("Socket Error");
 	}
 	
 	sock.onmessage = function(e) {
-		console.log("K " + e.data);
 		var array = e.data.split("'");
-		
-		console.log(array[1]);
-		console.log(array[3]);
 		
 		if (e.data[0] == '['){
 			if(array[1] == 'F'){
@@ -399,26 +360,17 @@ function k_getstatus(){
 		}
 		
 		if (e.data[0] != '['){
-			console.log('it is present data');
 			hunchres(e.data);
 		}
 	}
 };
 
 function r_getstatus(){
-	console.log("RestRoom");
 	if(sock){
 		sock.send("uRST4");
-	}else{
-		console.log("Socket Error");
 	}
-	
 	sock.onmessage = function(e) {
-		console.log("B " + e.data);
 		var array = e.data.split("'");
-		
-		console.log(array[1]);
-		console.log(array[3]);
 		
 		if (e.data[0] == '['){		
 			if(array[1] == 'F'){
@@ -438,7 +390,6 @@ function r_getstatus(){
 		}
 		
 		if (e.data[0] != '['){
-			console.log('it is present data');
 			hunchres(e.data);
 		}
 	}
@@ -653,8 +604,6 @@ function r1() {
  window.onload = function() {  
 		LogInStatus = localStorage.getItem("LoggedIn");
 		devName = localStorage.getItem("devName");
-		console.log("Device Name" + devName);
-		console.log("Log In Status "+ LogInStatus);
 		if(LogInStatus != 1){
 			alert("Device Not Found");
 			window.location.replace("addDname.html");
