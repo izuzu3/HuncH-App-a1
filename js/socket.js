@@ -18,7 +18,6 @@ function findServers(port, ipBase, ipLow, ipHigh, maxInFlight, timeout, cb) {
         var address = "ws://" + ipBase + ip + ":" + port;
         var socket = new WebSocket(address);
         var timer = setTimeout(function() {
-            console.log(address + " timeout");
             var s = socket;
             socket = null;
             s.close();
@@ -52,8 +51,7 @@ function findServers(port, ipBase, ipLow, ipHigh, maxInFlight, timeout, cb) {
             tryOne(ipCurrent++);
         }
         if (numInFlight === 0) {
-	    console.log(servers);
-            cb(servers);
+	        cb(servers);
         }
     }
     next();
@@ -99,14 +97,8 @@ function getCost(data){
 function loadPower(){
 	sock.send('LPT4');
 	sock.onmessage = function(e){
-		console.log("power" +e.data);
 		var power = e.data.split(",");
-		console.log(power[0]);
-		
-		for(var i=0; i< power.length; i++){
-			console.log(power[i]);
-		}
-		
+
 		if (power[0] == "['l'"){
 			l_powerstatus(e.data);
 		}
@@ -125,7 +117,6 @@ function loadPower(){
 
 
 function l_powerstatus(str){	
-	console.log("l " + str);
 	var power = str.split(",");
 
 	var l_temp_str = power[4];
@@ -165,8 +156,6 @@ function l_powerstatus(str){
 }
 
 function b_powerstatus(str){
-	
-	console.log("b " + str);
 	var power = str.split(",");
 
 	var b_temp_str = power[4];
@@ -207,8 +196,6 @@ function b_powerstatus(str){
 }
 
 function r_powerstatus(str){
-	
-	console.log("r " + str);
 	var power = str.split(",");
 
 	var r_temp_str = power[4];
@@ -248,8 +235,6 @@ function r_powerstatus(str){
 }
 
 function k_powerstatus(str){
-	
-	console.log("k " + str);
 	var power = str.split(",");
 
 	var k_temp_str = power[4];
@@ -313,7 +298,6 @@ function powerdata_check()
 //values obtained to generate the power and billing
 //status of entire home.
 function h_powerstatus(){
-	console.log("home");
 	h_hours = lthours + bthours + rthours + kthours;
 	h_power = ltpower + btpower + rtpower + ktpower;
 	document.getElementById('h_hour').innerHTML = timeFormat(h_hours);
@@ -326,20 +310,12 @@ function h_powerstatus(){
 function l_getstatus(){
 	if(sock){
 		sock.send("LST4");
-	}else{
-		console.log("Socket Error");
 	}
-	
 	sock.onmessage = function(e) {
-		console.log("l " + e.data);
 		var array = e.data.split("'"); // Used to split the sock.onmessage() obtained to get power and hour status.
-		console.log('working')
-		console.log(array[1]);
-		console.log(array[3]);
 		
 		if (e.data[0] == '[')
 		{
-			console.log('it is status');
 			if(array[1] == 'F'){
 			document.getElementById("l_pendt").style.backgroundImage = 'url("icons/Button-Pendant.png")';	
 		    }
@@ -349,18 +325,17 @@ function l_getstatus(){
 			}
 		
 		
-		if(array[3] == 'F'){
-			document.getElementById("l_wlight").style.backgroundImage = 'url("icons/Button-Wall.png")';
+			if(array[3] == 'F'){
+				document.getElementById("l_wlight").style.backgroundImage = 'url("icons/Button-Wall.png")';
+				}
+			else{
+				document.getElementById("l_wlight").style.backgroundImage = 'url("icons/Button-Wall-Active.png")';
+				l2status = 1;
 			}
-		else{
-			document.getElementById("l_wlight").style.backgroundImage = 'url("icons/Button-Wall-Active.png")';
-			l2status = 1;
-		}
 		}
 		
 		
 		if (e.data[0] != '['){
-			console.log('it is present data');
 			hunchres(e.data);
 		}
 	}
@@ -369,20 +344,12 @@ function l_getstatus(){
 
 
 function b_getstatus(){
-	console.log("BedRoom");
 	if(sock){
 		sock.send("BST4");
-	}else{
-		console.log("Socket Error");
 	}
 	
 	sock.onmessage = function(e) {
-		console.log("B " + e.data);
 		var array = e.data.split("'");
-		
-		console.log(array[1]);
-		console.log(array[3]);
-		
 		
 		if (e.data[0] == '[')
 		{
@@ -403,7 +370,6 @@ function b_getstatus(){
 		}
 		
 		if (e.data[0] != '['){
-			console.log('it is present data');
 			hunchres(e.data);
 		}
 	}
@@ -411,19 +377,11 @@ function b_getstatus(){
 
 
 function k_getstatus(){
-	console.log("Kitchen");
 	if(sock){
 		sock.send("KST4");
-	}else{
-		console.log("Socket Error");
 	}
-	
 	sock.onmessage = function(e) {
-		console.log("K " + e.data);
 		var array = e.data.split("'");
-		
-		console.log(array[1]);
-		console.log(array[3]);
 		
 		if (e.data[0] == '['){
 			if(array[1] == 'F'){
@@ -443,28 +401,18 @@ function k_getstatus(){
 		}
 		
 		if (e.data[0] != '['){
-			console.log('it is present data');
 			hunchres(e.data);
 		}
 	}
 };
 
-
-
 function r_getstatus(){
-	console.log("RestRoom");
 	if(sock){
 		sock.send("RST4");
-	}else{
-		console.log("Socket Error");
 	}
 	
 	sock.onmessage = function(e) {
-		console.log("B " + e.data);
 		var array = e.data.split("'");
-		
-		console.log(array[1]);
-		console.log(array[3]);
 		
 		if (e.data[0] == '['){		
 			if(array[1] == 'F'){
@@ -484,7 +432,6 @@ function r_getstatus(){
 		}
 		
 		if (e.data[0] != '['){
-			console.log('it is present data');
 			hunchres(e.data);
 		}
 	}
