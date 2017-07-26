@@ -5,9 +5,11 @@ var messagedata = null;
 var l1status = 0; var l2status = 0; var k1status = 0; var k2status = 0;
 var b1status = 0; var b2status = 0; var r1status = 0; var r2status = 0;
 var lpstatus=0; var bpstatus=0; var kpstatus=0; var rpstatus=0;
-
 var h_power = 0; var h_hours=0;
-	
+
+//This function is a local host scanning function.
+//It detects the IP in which Hunch is present.
+//The default port for scanning is set to 9700.
 function findServers(port, ipBase, ipLow, ipHigh, maxInFlight, timeout, cb) {
     var ipCurrent = +ipLow, numInFlight = 0, servers = [];
     ipHigh = +ipHigh;
@@ -50,7 +52,7 @@ function findServers(port, ipBase, ipLow, ipHigh, maxInFlight, timeout, cb) {
             tryOne(ipCurrent++);
         }
         if (numInFlight === 0) {
-			console.log(servers);
+	    console.log(servers);
             cb(servers);
         }
     }
@@ -59,37 +61,41 @@ function findServers(port, ipBase, ipLow, ipHigh, maxInFlight, timeout, cb) {
 
 window.onload = function() {  
 	findServers(9700, "192.168.1.", 1, 255, 255, 4000, function(servers) {
+	//If it does not find the localhost server. The below
+	//code directs to remote application page.
 		if(serverStatus == 0){
 			alert("Switching to Remote");
 			window.location.replace("remote.html");
 		}
 	});
 }
-
-
+//function to convert the time into particular format required by the UI
 function timeFormat(hours){
 	var temphours1 = parseFloat(hours).toFixed(2);
 	var temphours = temphours1.toString();
 	temphours = temphours.replace(".",":");
 	return temphours;
 }
-
+//function to convert seconds to hours
 function getHours(data){
 	return ((data)/3600.00).toFixed(2);
 }
-
+//function to convert seconds to minutes
 function getMins(data){
 	return ((data)/60.00).toFixed(2);
 }
-
+//function to convert volts into watts/hour
 function getWh(data){
 	return ((data)/1000.00).toFixed(2);
 }
-
+//function to generate cost based on the units
+//the default rate is set to 7rs/unit
 function getCost(data){
 	return ((data)*7).toFixed(2)	
 }
 /*------------ POWER STATUS -----------------*/	
+//This function sends a socket to
+//every room and gathers the status
 function loadPower(){
 	sock.send('LPT4');
 	sock.onmessage = function(e){
@@ -144,11 +150,7 @@ function l_powerstatus(str){
 
 	ltpower = (l_power);
 	lthours = (l_hours);
-	/*
-	h_hours = h_hours + parseFloat(l_hours);
-	h_power = h_power + parseFloat(l_power);
-
-	*/
+	
 	document.getElementById('l_hour').innerHTML = timeFormat(l_hours);
 	document.getElementById('l_pwr').innerHTML = l_power.toFixed(2);		
 
@@ -190,10 +192,7 @@ function b_powerstatus(str){
 	
 	btpower = parseFloat(b_power);
 	bthours = parseFloat(b_hours);
-	/*
-	h_hours = h_hours + parseFloat(b_hours);
-	h_power = h_power + parseFloat(b_power);
-	*/
+	
 	document.getElementById('b_hour').innerHTML = timeFormat(b_hours);
 	document.getElementById('b_pwr').innerHTML = b_power.toFixed(2);		
 
@@ -234,10 +233,7 @@ function r_powerstatus(str){
 
 	rtpower = parseFloat(r_power);
 	rthours = parseFloat(r_hours);
-	/*
-	h_hours = h_hours + parseFloat(r_hours);
-	h_power = h_power + parseFloat(r_power);
-	*/
+
 	document.getElementById('r_hour').innerHTML = timeFormat(r_hours);
 	document.getElementById('r_pwr').innerHTML = r_power.toFixed(2);		
 
@@ -282,10 +278,7 @@ function k_powerstatus(str){
 	
 	ktpower = parseFloat(k_power);
 	kthours = parseFloat(k_hours);
-	/*
-	h_hours = h_hours + parseFloat(k_hours);
-	h_power = h_power + parseFloat(k_power);
-	*/
+
 	document.getElementById('k_dev1_cost').innerHTML = k_cost_dev1;
 	document.getElementById('k_dev1_time').innerHTML = timeFormat(k_hour_dev1);
 
@@ -296,6 +289,10 @@ function k_powerstatus(str){
 	powerdata_check();
 }
 
+//This function check whether the websocket
+//has received the statuses of all the rooms.
+//If not it sends requests to the particular room.
+//This function works alongside loadPower().
 function powerdata_check()
 {
 	if (lpstatus == 0){
@@ -312,6 +309,9 @@ function powerdata_check()
 	}
 }
 
+//This function performs addition on all the
+//values obtained to generate the power and billing
+//status of entire home.
 function h_powerstatus(){
 	console.log("home");
 	h_hours = lthours + bthours + rthours + kthours;
@@ -321,8 +321,6 @@ function h_powerstatus(){
 	hpstatus =1;
 }
 
-
-/*----------- INITIAL STATUS -------------------------*/
 
 
 function l_getstatus(){
@@ -334,7 +332,7 @@ function l_getstatus(){
 	
 	sock.onmessage = function(e) {
 		console.log("l " + e.data);
-		var array = e.data.split("'");
+		var array = e.data.split("'"); // Used to split the sock.onmessage() obtained to get power and hour status.
 		console.log('working')
 		console.log(array[1]);
 		console.log(array[3]);
@@ -492,8 +490,9 @@ function r_getstatus(){
 	}
 };
 
-
-/*---------- HUNCH OPERATING FUNCTIONS ----------------------------*/
+//This function handles button image toggling.
+//This uses sock.onmessage() status to determine which 
+//icon to be used.
 function hunchres(state){
 	if(messagedata =="L1T4U" || state == "L1T4U"){
 				l1status=1;
@@ -547,8 +546,9 @@ function hunchres(state){
 }	
 
 /*----- LIVING ROOM ------*/
+//These function sends on/off function
+//to the Hunch using sock.send()
  function l1() { 
-	var msg = document.getElementById("l_pendt").name;
 	if (sock) {
 			if(l1status == 0){				
 				sock.send("L1T4");
@@ -567,7 +567,6 @@ function hunchres(state){
 };
 
  function l2() {
-	var msg = document.getElementById("l_wlight").name;
 	if (sock) {
 		if(l2status == 0){				
 			sock.send("L2T4");
@@ -624,7 +623,6 @@ function hunchres(state){
  
 /*-------- BedRoom-----------*/
 function b1() {
-	var msg = document.getElementById("b_tlight").name;
 	if (sock) {
 		if(b1status == 0){				
 			sock.send("B1T4");
@@ -643,7 +641,6 @@ function b1() {
 	
 	
  function b2() {
-	var msg = document.getElementById("b_wlight").name;
 	if (sock) {
 		if(b2status == 0){				
 			sock.send("B2T4");
@@ -663,7 +660,6 @@ function b1() {
    
 /*-------- Rest Room--------*/
 function r1() {
-	var msg = document.getElementById("r_vlight").name;
 	if (sock) {
 		if(r1status == 0){				
 			sock.send("R1T4");
@@ -682,7 +678,6 @@ function r1() {
 	
 	
  function r2() {
-	var msg = document.getElementById("r_wlight").name;
 	if (sock) {
 		if(r2status == 0){				
 			sock.send("R2T4");
